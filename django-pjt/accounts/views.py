@@ -11,6 +11,7 @@ from rest_framework.authtoken.models import Token
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 가능
 def user_list(request):
+    # print(f"Headers: {request.META}")
     users = User.objects.all()
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
@@ -30,6 +31,7 @@ def signup(request):
             "email": user.email,
             "major": user.major,
             "bio": user.bio,
+            "profile_picture": user.profile_picture.url if user.profile_picture else None,  # URL 반환
             "token": token.key  # 반환된 토큰 추가
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
