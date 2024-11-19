@@ -6,3 +6,5 @@ class User(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
     major = models.CharField(max_length=100)
     bio = models.TextField(blank=True)
+
+
