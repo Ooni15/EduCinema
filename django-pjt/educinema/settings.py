@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'articles',
     'accounts',
+    'movie',
+    'like',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -61,8 +63,15 @@ REST_FRAMEWORK = {
     # permission
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+REST_AUTH = {
+    'LOGIN_ON_REGISTER': True,  # 회원가입 후 자동 로그인 활성화
+}
+REST_AUTH_REGISTER_SERIALIZER = 'accounts.serializers.CustomRegisterSerializer'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,6 +140,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# settings.py
+
+MEDIA_URL = '/media/'  # URL로 접근할 때 사용할 경로
+MEDIA_ROOT = BASE_DIR / 'media'  # 서버에서 파일이 저장될 경로
 
 
 # Internationalization

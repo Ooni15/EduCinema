@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Article
+from articles.models import Article
+from accounts.models import User
 
 
 class ArticleListSerializer(serializers.ModelSerializer):
@@ -13,3 +14,10 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = '__all__'
         read_only_fields = ('user',)
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'profile_picture', 'major', 'bio']
