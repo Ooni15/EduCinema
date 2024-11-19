@@ -9,6 +9,12 @@ urlpatterns = [
 
     # accounts 앱의 URL
     path('api/v1/accounts/', include('accounts.urls')),
+    
+    # movies 앱의 URL
+    path('api/v1/movies/', include('movies.urls')),
+
+    # likes 앱의 URL
+    path('api/v1/likes/', include('likes.urls')),
 
     # 기타 앱의 URL
     path('api/v1/articles/', include('articles.urls')),
