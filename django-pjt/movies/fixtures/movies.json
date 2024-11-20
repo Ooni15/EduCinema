@@ -1,0 +1,44 @@
+[
+    {
+      "model": "movies.movie",
+      "pk": 1,
+      "fields": {
+        "movie_title": "The Power of Genetics",
+        "movie_genre": "Documentary",
+        "movie_synopsis": "A fascinating exploration of modern genetics and its implications for human health and society.",
+        "movie_rating": 4.5,
+        "technologies": "Gene Editing, CRISPR, DNA Sequencing",
+        "poster_url": "https://example.com/genetics_movie.jpg",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "movies.movie",
+      "pk": 2,
+      "fields": {
+        "movie_title": "AI Revolution",
+        "movie_genre": "Science",
+        "movie_synopsis": "An in-depth look at artificial intelligence and its impact on our future.",
+        "movie_rating": 4.8,
+        "technologies": "Machine Learning, Neural Networks, Deep Learning",
+        "poster_url": "https://example.com/ai_movie.jpg",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "movies.movie",
+      "pk": 3,
+      "fields": {
+        "movie_title": "Space Explorers",
+        "movie_genre": "Science Fiction",
+        "movie_synopsis": "Journey through space exploration and the technologies that make it possible.",
+        "movie_rating": 4.7,
+        "technologies": "Rocket Science, Space Navigation, Satellite Technology",
+        "poster_url": "https://example.com/space_movie.jpg",
+        "created_at": "2024-01-01T00:00:00Z",
+        "updated_at": "2024-01-01T00:00:00Z"
+      }
+    }
+  ]

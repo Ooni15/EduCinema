@@ -16,6 +16,10 @@ urlpatterns = [
     # likes 앱의 URL
     path('api/v1/likes/', include('likes.urls')),
 
+    # comments 앱의 URL
+    path('api/v1/comments/', include('comments.urls')),
+
+
     # 기타 앱의 URL
     path('api/v1/articles/', include('articles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
