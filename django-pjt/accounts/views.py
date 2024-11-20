@@ -6,15 +6,35 @@ from django.shortcuts import get_object_or_404
 from .models import User
 from .serializers import CustomRegisterSerializer, UserSerializer
 from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
 
-# 사용자 목록 조회
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 가능
-def user_list(request):
-    # print(f"Headers: {request.META}")
-    users = User.objects.all()
-    serializer = UserSerializer(users, many=True)
-    return Response(serializer.data)
+
+# 로그인
+@api_view(['POST'])
+@permission_classes([AllowAny])  # 인증 없이 접근 가능
+def login(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    if not username or not password:
+        return Response({'error': 'Username and password are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = authenticate(username=username, password=password)
+
+    if user is not None:
+        # 로그인 성공
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'username': user.username,
+            'email': user.email,
+            'major': user.major,
+            'bio': user.bio,
+            'profile_picture': user.profile_picture.url if user.profile_picture else None
+        }, status=status.HTTP_200_OK)
+    else:
+        # 로그인 실패
+        return Response({'error': 'Invalid username or password.'}, status=status.HTTP_401_UNAUTHORIZED)
 
 # 회원가입
 @api_view(['POST'])
@@ -35,6 +55,26 @@ def signup(request):
             "token": token.key  # 반환된 토큰 추가
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 가능
+def logout(request):
+    try:
+        # 현재 사용자와 연결된 토큰 삭제
+        request.user.auth_token.delete()
+        return Response({"message": "Logout successful."}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+# 사용자 목록 조회
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])  # 인증된 사용자만 접근 가능
+def user_list(request):
+    # print(f"Headers: {request.META}")
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)
 
 # 사용자 상세 조회, 수정, 삭제
 @api_view(['GET', 'PUT', 'DELETE'])

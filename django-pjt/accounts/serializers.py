@@ -13,17 +13,20 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CustomRegisterSerializer(RegisterSerializer):
     major = serializers.CharField(required=True)  # 추가 필드
+    bio = serializers.CharField(required=False, allow_blank=True)  # 자기소개 필드
     profile_picture = serializers.ImageField(required=False)  # 프로필 사진 필드 (선택적)
 
     def get_cleaned_data(self):
         data = super().get_cleaned_data()
         data['major'] = self.validated_data.get('major', '')  # major 필드 추가
+        data['bio'] = self.validated_data.get('bio', '')  # bio 저장
         data['profile_picture'] = self.validated_data.get('profile_picture', None)  # profile_picture 필드 추가
         return data
 
     def save(self, request):
         user = super().save(request)
         user.major = self.validated_data.get('major', '')  # major 저장
+        user.bio = self.validated_data.get('bio', '')  # bio 저장
         user.profile_picture = self.validated_data.get('profile_picture', None)  # profile_picture 저장
         user.save()  # 데이터 저장
         Token.objects.get_or_create(user=user)  # 토큰 생성
