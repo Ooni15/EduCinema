@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Article Page</h1>
-    <RouterLink :to="{ name: 'CreateView' }">Create</RouterLink>
     <ArticleList />
+    <RouterLink :to="{ name: 'CreateView' }">Create</RouterLink>
   </div>
 </template>
 

@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 export const useCounterStore = defineStore('counter', () => {
   const articles = ref([])
   const API_URL = 'http://127.0.0.1:8000'
-  const token = ref(null)
+  const token = ref('363268ee0fc6dc12b096c049e277f7a804472169')           // 임시로 토큰 값을 넣어주겠슴다
   const isLogin = computed(() => {
     if (token.value === null) {
       return false
@@ -16,22 +16,195 @@ export const useCounterStore = defineStore('counter', () => {
   })
   const router = useRouter()
 
-  // DRF로 전체 게시글 요청을 보내고 응답을 받아 articles에 저장하는 함수
-  const getArticles = function () {
-    axios({
-      method: 'get',
-      url: `${API_URL}/api/v1/articles/`,
-      headers: {
-        Authorization: `Token ${token.value}`
-      }
-    })
-      .then((res) => {
-        // console.log(res.data)
-        articles.value = res.data
+  // 전체 게시글 조회
+  const getArticles = async () => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/articles/`,
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
       })
-      .catch((err) => {
-        console.log(err)
+      articles.value = response.data
+    } catch (error) {
+      console.error('게시글 목록 조회 실패:', error)
+    }
+  }
+
+  // 게시글 생성
+  const createArticle = async (articleData) => {
+    const formData = new FormData()
+    
+    // 일반 데이터 추가
+    formData.append('title', articleData.title)
+    formData.append('content', articleData.content)
+    formData.append('related_major', articleData.related_major)
+    formData.append('technology_type', articleData.technology_type)
+    formData.append('movie_description', articleData.movie_description)
+    formData.append('short_description', articleData.short_description)
+    formData.append('movie_id', articleData.movie_id)
+
+    // 파일 데이터 추가
+    if (articleData.learning_material) {
+      formData.append('learning_material_url', articleData.learning_material)
+    }
+
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/articles/`,
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Token ${token.value}`
+        }
       })
+      return response.data
+    } catch (error) {
+      console.error('게시글 작성 실패:', error)
+      throw error
+    }
+  }
+
+  // 게시글 상세 조회
+  const getArticleDetail = async (articleId) => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/articles/${articleId}/`,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Token ${token.value}`
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('게시글 상세 조회 실패:', error)
+      throw error
+    }
+  }
+
+  // 게시글 수정
+  const updateArticle = async (articleId, articleData) => {
+    try {
+      // FormData 대신 일반 객체로 데이터 전송
+      const response = await axios({
+        method: 'put',
+        url: `${API_URL}/api/v1/articles/${articleId}/`,
+        data: {
+          title: articleData.title,
+          content: articleData.content,
+          related_major: articleData.related_major,
+          technology_type: articleData.technology_type
+        },
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('게시글 수정 실패:', error)
+      throw error
+    }
+  }
+
+  // 게시글 삭제
+  const deleteArticle = async (articleId) => {
+    try {
+      await axios({
+        method: 'delete',
+        url: `${API_URL}/api/v1/articles/${articleId}/`,
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+    } catch (error) {
+      console.error('게시글 삭제 실패:', error)
+      throw error
+    }
+  }
+
+  // 댓글 작성
+  const createComment = async (articleId, content) => {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/articles/${articleId}/comments/`,
+        data: {
+          content: content,
+          article: articleId
+        },
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+      // 댓글 작성 후 게시글 목록 새로고침
+      await getArticles()
+      return response.data
+    } catch (error) {
+      console.error('댓글 작성 실패:', error)
+      throw error
+    }
+  }
+
+  // 댓글 수정
+  const updateComment = async (articleId, commentId, content) => {
+    try {
+      const response = await axios({
+        method: 'put',
+        url: `${API_URL}/api/v1/articles/${articleId}/comments/${commentId}/`,
+        data: { content },
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+      // 댓글 수정 후 게시글 목록 새로고침
+      await getArticles()
+      return response.data
+    } catch (error) {
+      console.error('댓글 수정 실패:', error)
+      throw error
+    }
+  }
+
+  // 댓글 삭제
+  const deleteComment = async (articleId, commentId) => {
+    try {
+      await axios({
+        method: 'delete',
+        url: `${API_URL}/api/v1/articles/${articleId}/comments/${commentId}/`,
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+      // 댓글 삭제 후 게시글 목록 새로고침
+      await getArticles()
+      return true
+    } catch (error) {
+      console.error('댓글 삭제 실패:', error)
+      throw error
+    }
+  }
+
+  // 좋아요 토글
+  const toggleLike = async (articleId) => {
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/articles/${articleId}/like/`,
+        data: {
+          article_id: articleId
+        },
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('좋아요 처리 실패:', error)
+      throw error
+    }
   }
 
   // 회원가입 요청 액션
@@ -98,5 +271,20 @@ export const useCounterStore = defineStore('counter', () => {
         console.log(err)
       })
   }
-  return { articles, API_URL, getArticles, signUp, logIn, token, isLogin, logOut }
+  return { articles, 
+    API_URL, 
+    getArticles,
+    createArticle,
+    getArticleDetail,
+    updateArticle,
+    deleteArticle,
+    createComment,
+    updateComment,
+    deleteComment,
+    toggleLike,
+    signUp, 
+    logIn, 
+    token, 
+    isLogin, 
+    logOut }
 }, { persist: true })

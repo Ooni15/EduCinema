@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ArticleView from '@/views/ArticleView.vue'
 import DetailView from '@/views/DetailView.vue'
 import CreateView from '@/views/CreateView.vue'
+import EditView from '@/views/EditView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import LogInView from '@/views/LogInView.vue'
 import { useCounterStore } from '@/stores/counter'
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/create',
       name: 'CreateView',
       component: CreateView
+    },
+    {
+      path: '/articles/:id/edit',
+      name: 'EditView',
+      component: EditView
     },
     {
       path: '/signup',
