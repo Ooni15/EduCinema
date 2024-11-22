@@ -37,7 +37,11 @@ urlpatterns = [
     # likes 앱의 URL
     path('api/v1/likes/', include('likes.urls')),
 
-    # articles 앱의 URL
+    # comments 앱의 URL
+    path('api/v1/comments/', include('comments.urls')),
+
+
+    # 기타 앱의 URL
     path('api/v1/articles/', include('articles.urls')),
 ]
 
