@@ -83,7 +83,9 @@ export const useCounterStore = defineStore('counter', () => {
         const receivedToken = res.data.token; // 받은 토큰
         console.log('받은 토큰:', receivedToken);
         token.value = receivedToken; // Vue 상태에 저장
+        
         localStorage.setItem('token', receivedToken); // 로컬 스토리지에 저장
+        console.log('토큰 저장 완료:', localStorage.getItem('token'));
         console.log('로그인 성공:', receivedToken);
         router.push({ name: 'ArticleView' }); // 페이지 이동
       })
@@ -93,9 +95,13 @@ export const useCounterStore = defineStore('counter', () => {
   };
   
   
+  
   // [추가기능] 로그아웃
   const logOut = function () {
-    console.log('저장된 토큰:', localStorage.getItem('token'));
+    // console.log('받은 토큰:', receivedToken); // 서버에서 받은 토큰
+    console.log('Pinia에 저장된 토큰:', token.value); // Pinia 상태에 저장된 토큰
+    console.log('LocalStorage에 저장된 토큰:', localStorage.getItem('token')); // 로컬 스토리지 확인
+
 
     axios({
       method: 'post',
