@@ -3,10 +3,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.shortcuts import get_object_or_404
-from .models import User
-from .serializers import CustomRegisterSerializer, UserSerializer
+from .models import User, UserLike, ProfileComment
+from .serializers import CustomRegisterSerializer, UserSerializer, ProfileCommentSerializer, UserLikeSerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+
 
 
 # 로그인
@@ -99,3 +100,62 @@ def user_detail(request, user_pk):
             return Response({'error': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
         user.delete()
         return Response({'message': 'User deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_like(request, user_id):
+    try:
+        if request.user.id == user_id:
+            return Response({'error': '자기 자신을 좋아요할 수 없습니다.'}, status=400)
+        
+        liked_user = User.objects.get(id=user_id)
+        user_like, created = UserLike.objects.get_or_create(user=request.user, liked_user=liked_user)
+        if not created:
+            user_like.delete()
+            return Response({'message': '좋아요 취소 완료'}, status=200)
+        return Response({'message': '좋아요 완료'}, status=201)
+    except User.DoesNotExist:
+        return Response({'error': '존재하지 않는 사용자입니다.'}, status=404)
+
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def profile_comments(request, user_id):
+    target_user = get_object_or_404(User, id=user_id)
+    
+    if request.method == 'GET':
+        comments = ProfileComment.objects.filter(target_user=target_user)
+        serializer = ProfileCommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ProfileCommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user, target_user=target_user)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    
+@api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def profile_comment_detail(request, comment_id):
+    comment = get_object_or_404(ProfileComment, id=comment_id)
+
+    # 수정 요청
+    if request.method == 'PUT':
+        if comment.user != request.user:
+            return Response({'error': '권한이 없습니다.'}, status=403)
+        serializer = ProfileCommentSerializer(comment, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    # 삭제 요청
+    elif request.method == 'DELETE':
+        if comment.user != request.user:
+            return Response({'error': '권한이 없습니다.'}, status=403)
+        comment.delete()
+        return Response({'message': '댓글이 삭제되었습니다.'}, status=204)
