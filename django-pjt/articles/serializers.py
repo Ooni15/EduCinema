@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ['id', 'movie_title', 'movie_genre', 'poster_url']
+        fields = ['id', 'movie_title', 'movie_genre', 'poster']
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
