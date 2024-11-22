@@ -18,8 +18,6 @@ class UserLike(models.Model):
         return f'{self.user.username} likes {self.liked_user.username}'
 
 
-
-
 class ProfileComment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile_comments')
     target_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='received_comments')
