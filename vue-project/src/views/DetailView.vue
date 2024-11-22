@@ -81,12 +81,27 @@
         <div v-for="comment in article.comments" :key="comment.id" class="comment">
           <div class="comment-header">
             <img :src="comment.user?.profile_picture || '/default-profile.png'" alt="프로필" class="comment-profile-pic">
-            <span class="comment-username">{{ comment.user?.username }}</span>
+            <span class="comment-username">{{ comment.username }}</span>
             <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
           </div>
-          <p class="comment-content">{{ comment.content }}</p>
+          
+          <!-- 댓글 내용 (수정 모드에 따라 다르게 표시) -->
+          <div v-if="editingCommentId === comment.id" class="comment-edit-form">
+            <textarea 
+              v-model="editingContent" 
+              class="edit-textarea"
+              @keyup.enter="submitEdit(comment)"
+            ></textarea>
+            <div class="edit-buttons">
+              <button @click="submitEdit(comment)" class="save-btn">저장</button>
+              <button @click="cancelEdit" class="cancel-btn">취소</button>
+            </div>
+          </div>
+          <p v-else class="comment-content">{{ comment.content }}</p>
+    
+          <!-- 댓글 작성자인 경우에만 수정/삭제 버튼 표시 -->
           <div v-if="isCommentAuthor(comment)" class="comment-actions">
-            <button @click="updateComment(comment)">수정</button>
+            <button @click="startEdit(comment)" v-if="editingCommentId !== comment.id">수정</button>
             <button @click="deleteComment(comment)">삭제</button>
           </div>
         </div>
@@ -160,19 +175,35 @@ const submitComment = async () => {
     console.error('댓글 작성 실패:', error)
   }
 }
+// 댓글 수정 관련 상태 추가
+const editingCommentId = ref(null)
+const editingContent = ref('')
 
-// 댓글 수정
-const updateComment = async (comment) => {
-  const newContent = prompt('댓글을 수정하세요:', comment.content)
-  if (newContent && newContent !== comment.content) {
-    try {
-      await store.updateComment(article.value.id, comment.id, newContent)
-      // 게시글 상세 정보 새로고침
-      const response = await store.getArticleDetail(route.params.id)
-      article.value = response
-    } catch (error) {
-      console.error('댓글 수정 실패:', error)
-    }
+// 댓글 수정 시작
+const startEdit = (comment) => {
+  editingCommentId.value = comment.id
+  editingContent.value = comment.content
+}
+
+// 댓글 수정 취소
+const cancelEdit = () => {
+  editingCommentId.value = null
+  editingContent.value = ''
+}
+
+// 댓글 수정 제출
+const submitEdit = async (comment) => {
+  if (!editingContent.value.trim()) return
+  
+  try {
+    await store.updateComment(comment.id, editingContent.value, article.value.id)
+    // 게시글 상세 정보 새로고침
+    const response = await store.getArticleDetail(route.params.id)
+    article.value = response
+    // 수정 모드 종료
+    cancelEdit()
+  } catch (error) {
+    console.error('댓글 수정 실패:', error)
   }
 }
 
@@ -180,7 +211,7 @@ const updateComment = async (comment) => {
 const deleteComment = async (comment) => {
   if (confirm('댓글을 삭제하시겠습니까?')) {
     try {
-      await store.deleteComment(article.value.id, comment.id)
+      await store.deleteComment(comment.id, article.value.id)  // article.id 추가
       // 게시글 상세 정보 새로고침
       const response = await store.getArticleDetail(route.params.id)
       article.value = response
@@ -189,6 +220,7 @@ const deleteComment = async (comment) => {
     }
   }
 }
+
 // 게시글 수정
 const handleEdit = () => {
   router.push({ 
@@ -293,7 +325,41 @@ const handleDelete = async () => {
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
+.comment-edit-form {
+  margin: 10px 0;
+}
 
+.edit-textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.save-btn, .cancel-btn {
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #42b983;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #666;
+  color: white;
+}
 .article-actions {
   margin-top: 20px;
   display: flex;

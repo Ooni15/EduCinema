@@ -2,9 +2,10 @@
   <div class="article-card">
     <div class="movie-info">
       <img 
-        :src="article.movie?.poster_url" 
-        :alt="article.movie?.movie_title"
-        class="movie-poster"
+      v-if="article.movie"
+      :src="getImageUrl(article.movie.poster)" 
+      :alt="article.movie.movie_title"
+      class="movie-poster"
       >
       <div class="movie-details">
         <h4>Movie Title: {{ article.movie?.movie_title }}</h4>
@@ -32,7 +33,7 @@
         </div>
         <div class="post-meta">
           <span class="likes-count">❤️ {{ article.likes_count }}</span>
-          <span class="comments-count">💬 {{ getCommentsCount }}</span>
+          <span class="comments-count">💬 {{ article.comments_count }}</span>
           <!-- /comments 개수가 올바르게 조회되는지 확인 필요함 -->
         </div>
       </div>
@@ -51,20 +52,11 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import { computed } from 'vue'
-
-const props = defineProps({
-  article: Object
-})
 
 const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString('ko-KR')
 }
 
-// computed 속성으로 댓글 수 계산
-const getCommentsCount = computed(() => {
-  return props.article?.comments?.length || 0
-})
 </script>
 
 <style scoped>

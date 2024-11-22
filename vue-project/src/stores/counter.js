@@ -4,9 +4,15 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
-  const articles = ref([])
+  const articles = ref([{
+    movie: {
+      movie_title: '',
+      movie_genre: '',
+      poster: ''
+    }
+  }])
   const API_URL = 'http://127.0.0.1:8000'
-  const token = ref('363268ee0fc6dc12b096c049e277f7a804472169')           // 임시로 토큰 값을 넣어주겠슴다
+  const token = ref('385ea9586360ab18d883c53b6bb031a54a69625c')           // 임시로 토큰 값을 넣어주겠슴다
   const isLogin = computed(() => {
     if (token.value === null) {
       return false
@@ -147,19 +153,20 @@ export const useCounterStore = defineStore('counter', () => {
       throw error
     }
   }
-
   // 댓글 수정
-  const updateComment = async (articleId, commentId, content) => {
+  const updateComment = async (commentId, content, articleId) => {
     try {
       const response = await axios({
         method: 'put',
-        url: `${API_URL}/api/v1/articles/${articleId}/comments/${commentId}/`,
-        data: { content },
+        url: `${API_URL}/api/v1/comments/${commentId}/`,
+        data: {
+          content: content,
+          article: articleId
+        },
         headers: {
           Authorization: `Token ${token.value}`
         }
       })
-      // 댓글 수정 후 게시글 목록 새로고침
       await getArticles()
       return response.data
     } catch (error) {
@@ -167,26 +174,23 @@ export const useCounterStore = defineStore('counter', () => {
       throw error
     }
   }
-
   // 댓글 삭제
-  const deleteComment = async (articleId, commentId) => {
-    try {
-      await axios({
-        method: 'delete',
-        url: `${API_URL}/api/v1/articles/${articleId}/comments/${commentId}/`,
-        headers: {
-          Authorization: `Token ${token.value}`
-        }
-      })
-      // 댓글 삭제 후 게시글 목록 새로고침
-      await getArticles()
-      return true
-    } catch (error) {
-      console.error('댓글 삭제 실패:', error)
-      throw error
-    }
+const deleteComment = async (commentId) => {
+  try {
+    await axios({
+      method: 'delete',
+      url: `${API_URL}/api/v1/comments/${commentId}/`,
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    })
+    await getArticles()
+    return true
+  } catch (error) {
+    console.error('댓글 삭제 실패:', error)
+    throw error
   }
-
+}
   // 좋아요 토글
   const toggleLike = async (articleId) => {
     try {
