@@ -127,12 +127,15 @@ def profile_comments(request, user_id):
     target_user = get_object_or_404(User, id=user_id)
     
     if request.method == 'GET':
+        # 특정 사용자의 프로필에 달린 모든 댓글 조회
         comments = ProfileComment.objects.filter(target_user=target_user)
         serializer = ProfileCommentSerializer(comments, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
+        # 항상 새 댓글을 생성
         serializer = ProfileCommentSerializer(data=request.data)
+
         if serializer.is_valid():
             serializer.save(user=request.user, target_user=target_user)
             return Response(serializer.data, status=201)
