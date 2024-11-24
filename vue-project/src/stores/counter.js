@@ -34,12 +34,9 @@ export const useCounterStore = defineStore('counter', () => {
       })
   }
 
-  // 회원가입 요청 액션
-  // 이미지 파일 때문에 formdata로 전송함 => Json이 안되자나
-  const signUp = function (payload) {
+  const signUp = async function (payload) {
     const { username, email, password1, password2, major, bio, profile_picture } = payload;
   
-    // FormData 생성
     const formData = new FormData();
     formData.append('username', username);
     formData.append('email', email);
@@ -48,28 +45,29 @@ export const useCounterStore = defineStore('counter', () => {
     formData.append('major', major);
     formData.append('bio', bio);
     if (profile_picture) {
-      formData.append('profile_picture', profile_picture); // 이미지 파일 추가
+      formData.append('profile_picture', profile_picture);
     }
   
-    axios({
-      method: 'post',
-      url: `${API_URL}/accounts/signup/`, // URL 확인
-      data: formData, // FormData 전송
-      headers: {
-        'Content-Type': 'multipart/form-data', // 파일 업로드를 처리하는 헤더
-      },
-    })
-      .then((res) => {
-        console.log('회원가입 성공:', res.data);
-        const password = password1;
-        logIn({ username, password }); // 회원가입 성공 후 로그인 시도
-      })
-      .catch((err) => {
-        const errorMessage = err.response?.data || '회원가입에 실패했습니다.';
-        alert(errorMessage); // 오류 메시지 출력
+    try {
+      const res = await axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
+      console.log('회원가입 성공:', res.data);
+      const password = password1;
+      await logIn({ username, password }); // 로그인 시도
+      const userStore = useUserStore(); // User Store 호출
+      await userStore.fetchUsers(); // 사용자 리스트 갱신
+    } catch (err) {
+      const errorMessage = err.response?.data || '회원가입에 실패했습니다.';
+      alert(errorMessage);
+    }
   };
-
+  
   // 로그인 요청 액션
   const logIn = function (payload) {
     const { username, password } = payload;
@@ -81,12 +79,15 @@ export const useCounterStore = defineStore('counter', () => {
     })
       .then((res) => {
         const receivedToken = res.data.token; // 받은 토큰
+        const receivedUsername = res.data.username;
         console.log('받은 토큰:', receivedToken);
         token.value = receivedToken; // Vue 상태에 저장
         
         localStorage.setItem('token', receivedToken); // 로컬 스토리지에 저장
+        localStorage.setItem('username', receivedUsername); // 사용자 이름 로컬 스토리지 저장
         console.log('토큰 저장 완료:', localStorage.getItem('token'));
         console.log('로그인 성공:', receivedToken);
+        console.log('로그인 username:', receivedUsername)
         router.push({ name: 'ArticleView' }); // 페이지 이동
       })
       .catch((err) => {
