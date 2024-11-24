@@ -21,18 +21,20 @@
     </div>
 
     <!-- 영화 정보 -->
-    <div class="movie-section">
-      <img 
-        :src="article.movie?.poster_url" 
-        :alt="article.movie?.movie_title"
+    <div class="article-card">
+    <div class="movie-info">
+      <img
+        v-if="article?.movie"
+        :src="getImageUrl(article.movie.poster)"
+        :alt="article.movie.movie_title"
         class="movie-poster"
       >
-      <div class="movie-info">
-        <h3>movie_title: {{ article.movie?.movie_title }}</h3>
-        <p>movie_genre: {{ article.movie?.movie_genre }}</p>
+      <div class="movie-details">
+        <h4>Movie Title: {{ article?.movie?.movie_title }}</h4>
+        <p>Movie Genre: {{ article?.movie?.movie_genre }}</p>
       </div>
     </div>
-
+  </div>
     <!-- 게시글 본문 -->
     <div class="article-content">
       <div class="tech-info">
@@ -127,6 +129,23 @@ const router = useRouter()
 const article = ref({})
 const newComment = ref('')
 
+const props = defineProps({
+  article: {
+    type: Object,
+    required: true,
+    default: () => ({
+      movie: {
+        movie_title: '',
+        movie_genre: '',
+        poster: ''
+      }
+    })
+  }
+})
+
+const getImageUrl = (poster) => {
+  return poster || '/default-movie-poster.jpg'
+}
 // 날짜 포맷팅
 const formatDate = (dateString) => {
   return new Date(dateString).toLocaleString('ko-KR')
@@ -272,22 +291,26 @@ const handleDelete = async () => {
   border-radius: 50%;
   object-fit: cover;
 }
+.article-card {
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-.movie-section {
+.movie-info {
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 1rem;
 }
 
 .movie-poster {
-  width: 200px;
-  height: 300px;
+  width: 120px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
-.article-content {
-  margin-bottom: 30px;
+.movie-details {
+  flex: 1;
 }
 
 .likes-section {

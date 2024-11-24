@@ -3,16 +3,8 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
-export const useCounterStore = defineStore('counter', () => {
-  const articles = ref([{
-    movie: {
-      movie_title: '',
-      movie_genre: '',
-      poster: ''
-    }
-  }])
   const API_URL = 'http://127.0.0.1:8000'
-  const token = ref('385ea9586360ab18d883c53b6bb031a54a69625c')           // 임시로 토큰 값을 넣어주겠슴다
+  const token = ref('4b88add7eb532df1dd12b8344167b1a3afea6d62')           // 임시로 토큰 값을 넣어주겠슴다
   const isLogin = computed(() => {
     if (token.value === null) {
       return false
@@ -21,7 +13,16 @@ export const useCounterStore = defineStore('counter', () => {
     }
   })
   const router = useRouter()
-
+  // 영화 object
+  export const useCounterStore = defineStore('counter', () => {
+    // const articles = ref([{
+    //   movie: {
+    //     movie_title: '',
+    //     movie_genre: '',
+    //     poster: ''
+    //   }
+    // }])
+  const articles = ref([])
   // 전체 게시글 조회
   const getArticles = async () => {
     try {
@@ -32,6 +33,8 @@ export const useCounterStore = defineStore('counter', () => {
           Authorization: `Token ${token.value}`
         }
       })
+      // 응답 데이터 구조 확인을 위한 로그 추가
+      console.log('API Response:', response.data)
       articles.value = response.data
     } catch (error) {
       console.error('게시글 목록 조회 실패:', error)
