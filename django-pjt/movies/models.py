@@ -12,7 +12,7 @@ class Movie(models.Model):
         ]
     )
     technologies = models.TextField(max_length=100)
-    poster_url = models.URLField(max_length=500, blank=True, null=True)
+    poster = models.ImageField(upload_to='movie_posters/', blank=True, null=True)  # poster_url 대신 ImageField 사용
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
