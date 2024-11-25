@@ -10,4 +10,5 @@ urlpatterns = [
     path('users/<int:user_id>/comments/', views.profile_comments, name='profile-comments'),
     path('comments/<int:comment_id>/', views.profile_comment_detail, name='profile-comment-detail'),
     path('users/<int:user_id>/toggle-like/', views.toggle_like, name='toggle-like'),
+    path('me/', views.get_current_user, name='current_user'),
 ]
