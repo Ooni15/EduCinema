@@ -10,6 +10,12 @@ from django.contrib.auth import authenticate
 
 
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_current_user(request):
+    serializer = UserSerializer(request.user)
+    return Response(serializer.data)
+
 # 로그인
 @api_view(['POST'])
 @permission_classes([AllowAny])  # 인증 없이 접근 가능

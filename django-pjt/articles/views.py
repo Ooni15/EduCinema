@@ -9,6 +9,14 @@ from comments.models import Comment
 from comments.serializers import CommentSerializer
 from likes.models import Like
 
+# 랑운 user_articles profile용 만들어가유~
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_articles(request, user_id):
+    articles = Article.objects.filter(user_id=user_id)
+    serializer = ArticleListSerializer(articles, many=True)
+    return Response(serializer.data)
+
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def article_list(request):
