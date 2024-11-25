@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'accounts',
     'movies',
     'likes',
+    'comments',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -59,6 +60,7 @@ REST_FRAMEWORK = {
     # Authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
     # permission
     'DEFAULT_PERMISSION_CLASSES': [
@@ -142,8 +144,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # settings.py
 
-MEDIA_URL = '/media/'  # URL로 접근할 때 사용할 경로
-MEDIA_ROOT = BASE_DIR / 'media'  # 서버에서 파일이 저장될 경로
+# MEDIA_URL = '/media/'  # URL로 접근할 때 사용할 경로
+# MEDIA_ROOT = BASE_DIR / 'media'  # 서버에서 파일이 저장될 경로
+
+import os
+
+# MEDIA 설정
+MEDIA_URL = '/media/'  # URL 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 실제 파일 저장 경로
 
 
 # Internationalization
