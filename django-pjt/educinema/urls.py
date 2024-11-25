@@ -22,7 +22,8 @@ urlpatterns = [
 
     # 기타 앱의 URL
     path('api/v1/articles/', include('articles.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# # static 파일 설정 (DEBUG 모드에서만 작동)
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# static 파일 설정 (DEBUG 모드에서만 작동)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
