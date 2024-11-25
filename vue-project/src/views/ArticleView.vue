@@ -1,12 +1,18 @@
 <template>
   <div class="article-page">
-    <div class="header">
-      <h1>영화 게시글</h1>
-      <RouterLink :to="{ name: 'CreateView' }" class="create-button">
-        게시글 작성
-      </RouterLink>
+    <div class="hero-section">
+      <div class="container">
+        <div class="header-content">
+          <h1>게시글 조회</h1>
+          <RouterLink :to="{ name: 'CreateView' }" class="create-button">
+            게시글 작성하기
+          </RouterLink>
+        </div>
+      </div>
     </div>
-    <ArticleList />
+    <div class="container">
+      <ArticleList />
+    </div>
   </div>
 </template>
 
@@ -25,26 +31,63 @@ onMounted(() => {
 
 <style scoped>
 .article-page {
-  padding: 20px;
+  min-height: 100vh;
+  background: #f8f9fa;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.hero-section {
+  background: linear-gradient(135deg, #0066ff, #0044cc);
+  padding: 30px 0;
+  color: white;
   margin-bottom: 20px;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
 .create-button {
-  padding: 8px 16px;
-  background-color: #42b983;
-  color: white;
+  background: white;
+  color: #0066ff;
+  padding: 12px 24px;
+  border-radius: 30px;
   text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .create-button:hover {
-  background-color: #3aa876;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 0;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .create-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
 </style>

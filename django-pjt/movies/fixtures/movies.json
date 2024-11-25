@@ -1,44 +1,302 @@
 [
   {
-    "model": "movies.movie",
-    "pk": 1,
-    "fields": {
-      "movie_title": "The Power of Genetics",
-      "movie_genre": "Documentary",
-      "movie_synopsis": "A fascinating exploration of modern genetics and its implications for human health and society.",
-      "movie_rating": 4.5,
-      "technologies": "Gene Editing, CRISPR, DNA Sequencing",
-      "poster": "movie_posters/movie_ex1.jpg",
-      "created_at": "2024-01-01T00:00:00Z",
-      "updated_at": "2024-01-01T00:00:00Z"
-    }
+      "model": "movies.Movie",
+      "pk": 1,
+      "fields": {
+          "movie_title": "Ex Machina",
+          "movie_genre": "Science Fiction",
+          "movie_synopsis": "A young programmer is selected to participate in a groundbreaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.",
+          "movie_rating": 4.5,
+          "technologies": "Artificial Intelligence, Robotics",
+          "poster": "movie_posters/movie_ex1.jpg"
+      }
   },
   {
-    "model": "movies.movie",
-    "pk": 2,
-    "fields": {
-      "movie_title": "AI Revolution",
-      "movie_genre": "Science",
-      "movie_synopsis": "An in-depth look at artificial intelligence and its impact on our future.",
-      "movie_rating": 4.8,
-      "technologies": "Machine Learning, Neural Networks, Deep Learning",
-      "poster": "movie_posters/movie_ex1.jpg",
-      "created_at": "2024-01-01T00:00:00Z",
-      "updated_at": "2024-01-01T00:00:00Z"
-    }
+      "model": "movies.Movie",
+      "pk": 2,
+      "fields": {
+          "movie_title": "The Matrix",
+          "movie_genre": "Action, Science Fiction",
+          "movie_synopsis": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+          "movie_rating": 4.7,
+          "technologies": "Virtual Reality, Computer Hacking",
+          "poster": "movie_posters/movie_ex2.jpg"
+      }
   },
   {
-    "model": "movies.movie",
-    "pk": 3,
-    "fields": {
-      "movie_title": "Space Explorers",
-      "movie_genre": "Science Fiction",
-      "movie_synopsis": "Journey through space exploration and the technologies that make it possible.",
-      "movie_rating": 4.7,
-      "technologies": "Rocket Science, Space Navigation, Satellite Technology",
-      "poster": "movie_posters/movie_ex2.jpg",
-      "created_at": "2024-01-01T00:00:00Z",
-      "updated_at": "2024-01-01T00:00:00Z"
-    }
+      "model": "movies.Movie",
+      "pk": 3,
+      "fields": {
+          "movie_title": "Jurassic Park",
+          "movie_genre": "Science Fiction, Adventure",
+          "movie_synopsis": "A wealthy entrepreneur creates a theme park with cloned dinosaurs, which soon run amok.",
+          "movie_rating": 4.8,
+          "technologies": "Genetic Engineering, Cloning",
+          "poster": "movie_posters/movie_ex3.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 4,
+      "fields": {
+          "movie_title": "Minority Report",
+          "movie_genre": "Science Fiction, Thriller",
+          "movie_synopsis": "In a future where a special police unit is able to arrest murderers before they commit their crimes, an officer from that unit is himself accused of a future murder.",
+          "movie_rating": 4.2,
+          "technologies": "Predictive Analytics, Biometric Scanning",
+          "poster": "movie_posters/movie_ex4.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 5,
+      "fields": {
+          "movie_title": "The Social Network",
+          "movie_genre": "Drama, Biography",
+          "movie_synopsis": "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",
+          "movie_rating": 4.3,
+          "technologies": "Web Development, Social Media",
+          "poster": "movie_posters/movie_ex5.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 6,
+      "fields": {
+          "movie_title": "2001: A Space Odyssey",
+          "movie_genre": "Science Fiction",
+          "movie_synopsis": "A spacecraft is sent to Jupiter to find the origins of a mysterious artifact found on the Moon.",
+          "movie_rating": 4.3,
+          "technologies": "Artificial Intelligence, Space Exploration",
+          "poster": "movie_posters/movie_ex6.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 7,
+      "fields": {
+          "movie_title": "Blade Runner",
+          "movie_genre": "Science Fiction, Thriller",
+          "movie_synopsis": "A blade runner must pursue and terminate replicants who have returned to Earth.",
+          "movie_rating": 4.1,
+          "technologies": "Artificial Intelligence, Robotics",
+          "poster": "movie_posters/movie_ex7.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 8,
+      "fields": {
+          "movie_title": "Terminator 2: Judgment Day",
+          "movie_genre": "Action, Science Fiction",
+          "movie_synopsis": "A cyborg is sent back in time to protect a boy from a more advanced cyborg.",
+          "movie_rating": 4.6,
+          "technologies": "Artificial Intelligence, Time Travel",
+          "poster": "movie_posters/movie_ex8.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 9,
+      "fields": {
+          "movie_title": "Her",
+          "movie_genre": "Romance, Science Fiction",
+          "movie_synopsis": "A lonely writer develops a relationship with an operating system designed to meet his every need.",
+          "movie_rating": 4.0,
+          "technologies": "Artificial Intelligence, Human-Computer Interaction",
+          "poster": "movie_posters/movie_ex9.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 10,
+      "fields": {
+          "movie_title": "A.I. Artificial Intelligence",
+          "movie_genre": "Science Fiction, Drama",
+          "movie_synopsis": "A highly advanced robotic boy longs to become 'real' so that he can regain the love of his human mother.",
+          "movie_rating": 3.8,
+          "technologies": "Artificial Intelligence, Robotics",
+          "poster": "movie_posters/movie_ex10.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 11,
+      "fields": {
+          "movie_title": "I, Robot",
+          "movie_genre": "Action, Science Fiction",
+          "movie_synopsis": "In 2035, a technophobic cop investigates a crime that may have been perpetrated by a robot.",
+          "movie_rating": 3.7,
+          "technologies": "Robotics, Artificial Intelligence",
+          "poster": "movie_posters/movie_ex11.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 12,
+      "fields": {
+          "movie_title": "Ghost in the Shell",
+          "movie_genre": "Animation, Science Fiction",
+          "movie_synopsis": "A cyborg policewoman and her partner hunt a mysterious and powerful hacker.",
+          "movie_rating": 3.9,
+          "technologies": "Cybernetics, Artificial Intelligence",
+          "poster": "movie_posters/movie_ex12.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 13,
+      "fields": {
+          "movie_title": "Iron Man",
+          "movie_genre": "Action, Adventure",
+          "movie_synopsis": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+          "movie_rating": 4.5,
+          "technologies": "Exoskeletons, Advanced Computing Systems",
+          "poster": "movie_posters/movie_ex13.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 14,
+      "fields": {
+          "movie_title": "Elysium",
+          "movie_genre": "Action, Drama",
+          "movie_synopsis": "In the year 2154, the very wealthy live on a man-made space station while the rest of the population resides on a ruined Earth.",
+          "movie_rating": 3.6,
+          "technologies": "Space Habitats, Exoskeletons",
+          "poster": "movie_posters/movie_ex14.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 15,
+      "fields": {
+          "movie_title": "Ender's Game",
+          "movie_genre": "Action, Adventure",
+          "movie_synopsis": "Young Ender Wiggin is recruited by the International Military to lead the fight against the Formics.",
+          "movie_rating": 3.5,
+          "technologies": "Autonomous Weapons Systems, Space Warfare",
+          "poster": "movie_posters/movie_ex15.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 16,
+      "fields": {
+          "movie_title": "Inception",
+          "movie_genre": "Science Fiction, Action",
+          "movie_synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+          "movie_rating": 4.8,
+          "technologies": "Dream Manipulation, Neurotechnology",
+          "poster": "movie_posters/movie_ex16.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 17,
+      "fields": {
+          "movie_title": "The Martian",
+          "movie_genre": "Science Fiction, Drama",
+          "movie_synopsis": "An astronaut becomes stranded on Mars after his team assume him dead, and must rely on his ingenuity to find a way to signal to Earth that he is alive.",
+          "movie_rating": 4.4,
+          "technologies": "Space Exploration, Botany in Space",
+          "poster": "movie_posters/movie_ex17.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 18,
+      "fields": {
+          "movie_title": "Interstellar",
+          "movie_genre": "Science Fiction, Adventure",
+          "movie_synopsis": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+          "movie_rating": 4.6,
+          "technologies": "Wormhole Travel, Relativity",
+          "poster": "movie_posters/movie_ex18.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 19,
+      "fields": {
+          "movie_title": "WALL-E",
+          "movie_genre": "Animation, Science Fiction",
+          "movie_synopsis": "In a distant, but not so unrealistic, future where mankind has abandoned earth because it has become covered with trash from products sold by the powerful multi-national Buy N Large corporation, WALL-E, a garbage collecting robot has been left to clean up the mess.",
+          "movie_rating": 4.5,
+          "technologies": "Robotics, Environmental Technology",
+          "poster": "movie_posters/movie_ex19.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 20,
+      "fields": {
+          "movie_title": "Gattaca",
+          "movie_genre": "Science Fiction, Drama",
+          "movie_synopsis": "A genetically inferior man assumes the identity of a superior one in order to pursue his lifelong dream of space travel.",
+          "movie_rating": 4.1,
+          "technologies": "Genetic Engineering, Biometric Identification",
+          "poster": "movie_posters/movie_ex20.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 21,
+      "fields": {
+          "movie_title": "Ready Player One",
+          "movie_genre": "Science Fiction, Action",
+          "movie_synopsis": "When the creator of a virtual reality world called the OASIS dies, he releases a video in which he challenges all OASIS users to find his Easter Egg, which will give the finder his fortune.",
+          "movie_rating": 3.9,
+          "technologies": "Virtual Reality, Haptic Technology",
+          "poster": "movie_posters/movie_ex21.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 22,
+      "fields": {
+          "movie_title": "Transcendence",
+          "movie_genre": "Science Fiction, Drama",
+          "movie_synopsis": "A scientist's drive for artificial intelligence takes on dangerous implications when his consciousness is uploaded into one such program.",
+          "movie_rating": 3.3,
+          "technologies": "Artificial Intelligence, Nanotechnology",
+          "poster": "movie_posters/movie_ex22.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 23,
+      "fields": {
+          "movie_title": "Avatar",
+          "movie_genre": "Science Fiction, Action",
+          "movie_synopsis": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+          "movie_rating": 4.2,
+          "technologies": "Neural Interface, 3D Holography",
+          "poster": "movie_posters/movie_ex23.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 24,
+      "fields": {
+          "movie_title": "The Imitation Game",
+          "movie_genre": "Biography, Drama",
+          "movie_synopsis": "During World War II, the English mathematical genius Alan Turing tries to crack the German Enigma code with help from fellow mathematicians.",
+          "movie_rating": 4.4,
+          "technologies": "Cryptography, Early Computing",
+          "poster": "movie_posters/movie_ex24.jpg"
+      }
+  },
+  {
+      "model": "movies.Movie",
+      "pk": 25,
+      "fields": {
+          "movie_title": "Primer",
+          "movie_genre": "Science Fiction, Thriller",
+          "movie_synopsis": "Four friends/fledgling entrepreneurs, knowing that there's something bigger and more innovative than the different error-checking devices they've built, wrestle over their new invention.",
+          "movie_rating": 3.8,
+          "technologies": "Time Travel, Quantum Mechanics",
+          "poster": "movie_posters/movie_ex25.jpg"
+      }
   }
 ]

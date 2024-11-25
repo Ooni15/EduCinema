@@ -31,5 +31,23 @@ const logOut = function () {
 </script>
 
 <style scoped>
-/* 스타일 추가 가능 */
+:root {
+  --primary-blue: #0066FF;
+  --text-dark: #333333;
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 </style>

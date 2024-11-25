@@ -1,100 +1,113 @@
 <template>
-  <div class="article-detail">
-    <!-- 게시글 정보 -->
-    <div v-if="article" class="article-content">
-      <h1>{{ article.title }}</h1>
-      
-      <!-- 작성자 정보 -->
-      <div class="user-info">
-        <h3>작성자 정보</h3>
-        <p>작성자: {{ article.user.username }}</p>
-        <p>전공: {{ article.user.major }}</p>
-        <p>기술: {{ article.technology_type }}</p>
+  <div class="detail-page">
+    <div class="hero-section">
+      <div class="container">
+        <h1>{{ article?.title }}</h1>
+        <div class="meta-tags">
+          <span class="tag">{{ article?.movie?.movie_genre }}</span>
+          <span class="tag">{{ article?.technology_type }}</span>
+        </div>
       </div>
+    </div>
 
-      <!-- 영화 정보 -->
-      <div class="movie-info">
-        <h3>관련 영화</h3>
-        <!-- <img :src="article.movie.poster" :alt="article.movie.movie_title"> -->
-             <!-- store.API_URL과 poster 경로를 합쳐서 완전한 URL 생성 -->
-        <img 
-          v-if="article?.movie?.poster" 
-          :src="getFullImageUrl(article.movie.poster)" 
-          :alt="article.movie.movie_title"
-        >
-        <p>영화 제목: {{ article.movie.movie_title }}</p>
-        <p>장르: {{ article.movie.movie_genre }}</p>
-      </div>
-
-      <!-- 게시글 본문 -->
-      <div class="article-body">
-        <h4>내용</h4>
-        <p>{{ article.content }}</p>
-        <h4>기술 설명</h4>
-        <p>{{ article.movie_description }}</p>
-        <p>작성일: {{ article.created_at }}</p>
-        <p>수정일: {{ article.updated_at }}</p>
-      </div>
-      <hr>
-      <!-- 학습 자료 -->
-      <div v-if="article.learning_material_url" class="learning-material">
-        <h4>학습 자료</h4>
-        <a :href="article.learning_material_url" target="_blank" class="material-link">
-          자료 다운로드
-        </a>
-      </div>
-      <!-- 수정 및 삭제 버튼 -->
-      <div v-if="isAuthor" class="article-actions">
-        <button @click="editArticle">수정</button>
-        <button @click="deleteArticle">삭제</button>
-      </div>
-      <!-- 좋아요 섹션 -->
-      <div class="likes-section">
-        <button @click="handleLike" :class="{ 'liked': article.is_liked }">
-        {{ article.is_liked ? '좋아요 취소' : '좋아요' }}
-        </button>
-        <span>좋아요 수: {{ article.likes_count }}</span>
-      </div>
-      <!-- 댓글 섹션 -->
-      <div class="comments-section">
-        <h3>댓글</h3>
-        <!-- 댓글 작성 폼 -->
-        <div class="comment-form">
-          <textarea 
-            v-model="commentContent"
-            placeholder="댓글을 작성하세요"
-            class="comment-textarea"
-          ></textarea>
-          <button @click="addComment">작성</button>
+    <div class="container">
+      <div class="content-wrapper">
+        <!-- 작성자 정보 카드 -->
+        <div class="info-card author-card">
+          <h3>작성자 정보</h3>
+          <div class="author-info">
+            <p class="author-name">{{ article?.user?.username }}</p>
+            <p class="author-major">{{ article?.user?.major }}</p>
+          </div>
         </div>
 
-        <!-- 댓글 목록 -->
-        <div class="comments-list">
-          <div v-for="comment in article.comments" :key="comment.id" class="comment">
-            <!-- 댓글 작성자 정보 -->
-            <div class="comment-header">
-              <img :src="comment.user?.profile_picture || '/default-profile.png'" alt="프로필" class="comment-profile-pic">
-              <span class="comment-username">{{ comment.username }}</span>
-              <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
+        <!-- 영화 정보 카드 -->
+        <div class="info-card movie-card">
+          <h3>관련 영화</h3>
+          <div class="movie-content">
+            <img 
+              v-if="article?.movie?.poster" 
+              :src="getFullImageUrl(article.movie.poster)" 
+              :alt="article.movie.movie_title"
+            >
+            <div class="movie-details">
+              <h4>{{ article?.movie?.movie_title }}</h4>
+              <p>{{ article?.movie?.movie_genre }}</p>
+              <p class="tech-type">{{ article?.technology_type }}</p>
             </div>
-          
-            <!-- 댓글 내용 (수정 모드에 따라 다르게 표시) -->
-            <div v-if="editingCommentId === comment.id" class="comment-edit-form">
-              <textarea 
-                v-model="editingContent" 
-                class="edit-textarea"
-              ></textarea>
-              <div class="edit-buttons">
-                <button @click="submitEdit(comment)" class="save-btn">저장</button>
-                <button @click="cancelEdit" class="cancel-btn">취소</button>
+          </div>
+        </div>
+
+        <!-- 본문 내용 -->
+        <div class="content-card">
+          <div class="content-section">
+            <h4>내용</h4>
+            <p>{{ article?.content }}</p>
+          </div>
+          <div class="content-section">
+            <h4>기술 설명</h4>
+            <p>{{ article?.movie_description }}</p>
+          </div>
+          <div class="meta-info">
+            <span>작성일: {{ formatDate(article?.created_at) }}</span>
+            <span>수정일: {{ formatDate(article?.updated_at) }}</span>
+          </div>
+        </div>
+
+        <!-- 학습 자료 -->
+        <div v-if="article?.learning_material_url" class="material-card">
+          <h4>학습 자료</h4>
+          <a :href="article.learning_material_url" target="_blank" class="download-button">
+            자료 다운로드
+          </a>
+        </div>
+
+        <!-- 작성자 액션 버튼 -->
+        <div v-if="isAuthor" class="action-buttons">
+          <button @click="editArticle" class="edit-button">수정</button>
+          <button @click="deleteArticle" class="delete-button">삭제</button>
+        </div>
+
+        <!-- 좋아요 섹션 -->
+        <div class="like-section">
+          <button @click="handleLike" :class="{ 'liked': article?.is_liked }">
+            {{ article?.is_liked ? '좋아요 취소' : '좋아요' }}
+          </button>
+          <span>{{ article?.likes_count }} 명이 좋아합니다</span>
+        </div>
+
+        <!-- 댓글 섹션 -->
+        <div class="comments-section">
+          <h3>댓글</h3>
+          <div class="comment-form">
+            <textarea 
+              v-model="commentContent" 
+              placeholder="댓글을 작성하세요"
+            ></textarea>
+            <button @click="addComment">작성</button>
+          </div>
+
+          <div class="comments-list">
+            <div v-for="comment in article?.comments" :key="comment.id" class="comment">
+              <div class="comment-header">
+                <img :src="comment.user?.profile_picture || '/default-profile.png'" alt="프로필">
+                <span class="username">{{ comment.username }}</span>
+                <span class="date">{{ formatDate(comment.created_at) }}</span>
               </div>
-            </div>
-            <p v-else class="comment-content">{{ comment.content }}</p>
-          
-            <!-- 댓글 작성자인 경우에만 수정/삭제 버튼 표시 -->
-            <div v-if="isCommentAuthor(comment)" class="comment-actions">
-              <button @click="startEdit(comment)" v-if="editingCommentId !== comment.id">수정</button>
-              <button @click="deleteComment(comment.id)">삭제</button>
+
+              <div v-if="editingCommentId === comment.id" class="edit-form">
+                <textarea v-model="editingContent"></textarea>
+                <div class="edit-actions">
+                  <button @click="submitEdit(comment)" class="save">저장</button>
+                  <button @click="cancelEdit" class="cancel">취소</button>
+                </div>
+              </div>
+              <p v-else>{{ comment.content }}</p>
+
+              <div v-if="isCommentAuthor(comment)" class="comment-actions">
+                <button @click="startEdit(comment)">수정</button>
+                <button @click="deleteComment(comment.id)">삭제</button>
+              </div>
             </div>
           </div>
         </div>
@@ -232,117 +245,131 @@ const deleteComment = async (commentId) => {
 }
 </script>
 
-<style>
-.article-detail {
+<style scoped>
+.detail-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #0066ff, #0044cc);
+  padding: 60px 0;
+  color: white;
+}
+
+.container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 
-.article-content {
-  margin-bottom: 30px;
+.content-wrapper {
+  margin: -40px auto 40px;
 }
 
-.user-info, .movie-info, .article-body {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-/* 기존 스타일 유지 */
-.movie-info img {
-  max-width: 300px;  /* 최대 너비 지정 */
-  height: auto;      /* 비율 유지 */
-  object-fit: cover; /* 이미지 비율 유지하며 영역 채우기 */
-  border-radius: 8px; /* 모서리 둥글게 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+.info-card, .content-card, .material-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* 반응형 디자인을 위한 미디어 쿼리 */
-@media (max-width: 768px) {
-  .movie-info img {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-}
-.likes-section {
-  margin-top: 20px;
-}
-
-.likes-section button {
-  padding: 10px 20px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.likes-section button.liked {
-  background-color: #ff6b6b;
-  color: white;
-}
-
-.likes-section span {
-  margin-left: 10px;
-}
-.comment-form textarea {
-  width: 100%;
-  min-height: 80px;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-.comment-header {
+.movie-card .movie-content {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 24px;
 }
 
-.comment-profile-pic {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+.movie-card img {
+  width: 200px;
+  height: 300px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
-.comment-edit-form {
-  margin: 10px 0;
-}
-
-.edit-textarea {
-  width: 100%;
-  min-height: 60px;
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-.edit-buttons {
+.meta-tags {
   display: flex;
   gap: 8px;
+  margin-top: 16px;
 }
 
-.save-btn, .cancel-btn {
+.tag {
+  background: rgba(255, 255, 255, 0.2);
   padding: 4px 12px;
-  border-radius: 4px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.like-section button {
+  background: #f0f7ff;
+  color: #0066ff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.like-section button.liked {
+  background: #0066ff;
+  color: white;
+}
+
+.comments-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.comment-form textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.edit-button, .delete-button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.save-btn {
-  background-color: #42b983;
+.edit-button {
+  background: #0066ff;
   color: white;
 }
 
-.cancel-btn {
-  background-color: #666;
+.delete-button {
+  background: #ff4444;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .movie-card .movie-content {
+    flex-direction: column;
+  }
+
+  .movie-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
 }
 </style>
