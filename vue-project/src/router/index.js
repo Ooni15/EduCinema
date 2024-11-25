@@ -4,6 +4,7 @@ import DetailView from '@/views/DetailView.vue'
 import CreateView from '@/views/CreateView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import LogInView from '@/views/LogInView.vue'
+import EditView from '@/views/EditView.vue'  // EditView import
 import { useCounterStore } from '@/stores/counter'
 import ProfileListView from '@/views/ProfileListView.vue';
 import ProfileDetailView from '@/views/ProfileDetailView.vue';
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/create',
       name: 'CreateView',
       component: CreateView
+    },
+    {
+      path: '/articles/:id/edit',  // 수정 페이지 라우트 추가
+      name: 'EditArticle',
+      component: EditView
     },
     {
       path: '/signup',

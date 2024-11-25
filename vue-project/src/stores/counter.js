@@ -33,6 +33,77 @@ export const useCounterStore = defineStore('counter', () => {
         console.log(err)
       })
   }
+  // 영화 목록 가져오기
+  const getMovies = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/movies/`, {
+        headers: { Authorization: `Token ${token.value}` }
+      })
+      return response.data
+    } catch (error) {
+      console.error('영화 목록 가져오기 실패:', error)
+      throw error
+    }
+  }
+
+  // 게시글 생성
+  const createArticle = async (articleData) => {
+    try {
+      const formData = new FormData()
+      for (const [key, value] of Object.entries(articleData)) {
+        if (value !== null) {
+          formData.append(key, value)
+        }
+      }
+
+      const response = await axios.post(`${API_URL}/articles/`, formData, {
+        headers: {
+          Authorization: `Token ${token.value}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('게시글 작성 실패:', error)
+      throw error
+    }
+  }
+  // Update article
+  const updateArticle = async (articleId, articleData) => {
+    try {
+      const formData = new FormData()
+      for (const [key, value] of Object.entries(articleData)) {
+        if (value !== null) {
+          formData.append(key, value)
+        }
+      }
+
+      const response = await axios.put(`${API_URL}/articles/${articleId}/`, formData, {
+        headers: {
+          Authorization: `Token ${token.value}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('게시글 수정 실패:', error)
+      throw error
+    }
+  }
+
+  // Delete article
+  const deleteArticle = async (articleId) => {
+    try {
+      await axios.delete(`${API_URL}/articles/${articleId}/`, {
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+    } catch (error) {
+      console.error('게시글 삭제 실패:', error)
+      throw error
+    }
+  }
   //좋아요
   // 좋아요 토글 함수
   const toggleLike = async function (articleId) {
@@ -68,53 +139,63 @@ export const useCounterStore = defineStore('counter', () => {
     }
   }
   // 댓글 작성
-  const addComment = async function (articleId, content) {
+  const addComment = async (articleId, content) => {
     try {
-      const response = await axios({
-        method: 'post',
-        url: `${API_URL}/articles/${articleId}/comments/`,
-        headers: {
-          Authorization: `Token ${token.value}`
+      const response = await axios.post(
+        `${API_URL}/articles/${articleId}/comments/`,
+        {
+          content: content,
+          article: articleId
         },
-        data: { content }
-      })
+        {
+          headers: {
+            'Authorization': `Token ${token.value}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      )
       return response.data
     } catch (error) {
-      console.error('댓글 작성 실패:', error)
+      console.error('댓글 작성 실패:', error.response?.data || error)
       throw error
     }
   }
-
   // 댓글 수정
-  const updateComment = async function (articleId, commentId, content) {
+  const updateComment = async (articleId, commentId, content) => {
     try {
-      const response = await axios({
-        method: 'put',
-        url: `${API_URL}/articles/${articleId}/comments/${commentId}/`,
-        headers: {
-          Authorization: `Token ${token.value}`
+      const response = await axios.put(
+        `${API_URL}/articles/${articleId}/comments/${commentId}/`,
+        {
+          content: content,
+          article: articleId
         },
-        data: { content }
-      })
+        {
+          headers: {
+            Authorization: `Token ${token.value}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      )
       return response.data
     } catch (error) {
-      console.error('댓글 수정 실패:', error)
+      console.error('댓글 수정 실패:', error.response?.data || error)
       throw error
     }
   }
 
   // 댓글 삭제
-  const deleteComment = async function (articleId, commentId) {
+  const deleteComment = async (articleId, commentId) => {
     try {
-      await axios({
-        method: 'delete',
-        url: `${API_URL}/articles/${articleId}/comments/${commentId}/`,
-        headers: {
-          Authorization: `Token ${token.value}`
+      await axios.delete(
+        `${API_URL}/articles/${articleId}/comments/${commentId}/`,
+        {
+          headers: {
+            Authorization: `Token ${token.value}`
+          }
         }
-      })
+      )
     } catch (error) {
-      console.error('댓글 삭제 실패:', error)
+      console.error('댓글 삭제 실패:', error.response?.data || error)
       throw error
     }
   }
@@ -200,13 +281,14 @@ export const useCounterStore = defineStore('counter', () => {
         localStorage.removeItem('token'); // 로컬 스토리지 초기화
         router.push({ name: 'LogInView' }); // 로그인 페이지로 이동
         console.log('로그아웃 성공');
+        localStorage.removeItem('userId');  // userId도 제거
       })
       .catch((err) => {
         console.error('로그아웃 실패:', err.response?.data || err);
       });
   };
   
-  return { articles, API_URL, getArticles, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut }
+  return { articles, API_URL, getArticles, getMovies, createArticle, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut }
 }, { persist: true })
 
 
