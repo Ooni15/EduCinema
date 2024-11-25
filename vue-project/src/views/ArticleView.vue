@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <h1>Article Page</h1>
-    <RouterLink :to="{ name: 'CreateView' }">Create</RouterLink>
+  <div class="article-page">
+    <div class="header">
+      <h1>영화 게시글</h1>
+      <RouterLink :to="{ name: 'CreateView' }" class="create-button">
+        게시글 작성
+      </RouterLink>
+    </div>
     <ArticleList />
   </div>
 </template>
@@ -15,11 +19,32 @@ import { RouterLink } from 'vue-router'
 const store = useCounterStore()
 
 onMounted(() => {
-  // mount 되기전에 store에 있는 전체 게시글 요청 함수를 호출
   store.getArticles()
 })
 </script>
 
-<style>
+<style scoped>
+.article-page {
+  padding: 20px;
+}
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.create-button {
+  padding: 8px 16px;
+  background-color: #42b983;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.create-button:hover {
+  background-color: #3aa876;
+}
 </style>
