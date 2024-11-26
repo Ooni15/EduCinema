@@ -26,6 +26,7 @@
       <RouterLink :to="{ name: 'ArticleView' }">게시글</RouterLink>
       <RouterLink :to="{ name: 'CreateView' }">게시글 작성</RouterLink>
       <RouterLink :to="{ name: 'ProfileListView' }">프로필</RouterLink>
+      <RouterLink :to="{ name: 'GPTRecommendation' }">AI 추천</RouterLink>
     </nav>
   </header>
   <RouterView />

@@ -71,7 +71,22 @@ const getCommentsByUser = async (userId) => {
       throw error
     }
   }
-
+  // 현재 로그인한 사용자 정보 가져오기
+  const getCurrentUser = async function () {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: `${API_URL}/accounts/me/`,
+        headers: {
+          Authorization: `Token ${token.value}`
+        }
+      })
+      return response.data
+    } catch (error) {
+      console.error('사용자 정보 가져오기 실패:', error)
+      throw error
+    }
+  }
   // 게시글 생성
   const createArticle = async (articleData) => {
     try {
@@ -110,19 +125,27 @@ const getCommentsByUser = async (userId) => {
   const updateArticle = async (articleId, articleData) => {
     try {
       const formData = new FormData()
+      
       // 일반 데이터 추가
       for (const [key, value] of Object.entries(articleData)) {
-        if (key !== 'learning_material_url' && value !== null) {
+        if (key !== 'learning_material' && key !== 'learning_material_url' && value !== null) {
           formData.append(key, value)
         }
       }
   
-      // 파일 데이터 별도 처리
-      if (articleData.learning_material_url) {
+      // 파일 데이터 처리
+      if (articleData.learning_material instanceof File) {
+        // 새로운 파일이 선택된 경우
+        formData.append('learning_material', articleData.learning_material)
+      } else if (articleData.learning_material_url) {
+        // 기존 파일 유지
         formData.append('learning_material_url', articleData.learning_material_url)
       }
-
-      const response = await axios.put(`${API_URL}/articles/${articleId}/`, formData, {
+  
+      const response = await axios({
+        method: 'put',
+        url: `${API_URL}/articles/${articleId}/`,
+        data: formData,
         headers: {
           Authorization: `Token ${token.value}`,
           'Content-Type': 'multipart/form-data'
@@ -130,7 +153,9 @@ const getCommentsByUser = async (userId) => {
       })
       return response.data
     } catch (error) {
-      console.error('게시글 수정 실패:', error)
+      if (error.response?.data) {
+        console.error('서버 응답 에러:', error.response.data)
+      }
       throw error
     }
   }
@@ -332,7 +357,7 @@ const getCommentsByUser = async (userId) => {
       });
   };
   
-  return { articles, API_URL, getArticles, getMovies, createArticle, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut, getArticlesByUser, getCommentsByUser}
+  return { articles, API_URL, getArticles, getMovies, createArticle, getCurrentUser, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut }
 }, { persist: true })
 
 
