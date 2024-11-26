@@ -75,15 +75,15 @@
           </div>
 
           <div class="form-group">
-            <label for="learning_material">학습 자료</label>
+            <label for="learning_material_url">학습 자료</label>
             <div class="file-upload">
               <input 
                 type="file" 
-                id="learning_material" 
+                id="learning_material_url" 
                 @change="handleFileUpload"
                 class="file-input"
               >
-              <label for="learning_material" class="file-label">
+              <label for="learning_material_url" class="file-label">
                 파일 선택
               </label>
               <span v-if="article.learning_material_url" class="current-file">
@@ -119,7 +119,7 @@
     technology_type: '',
     content: '',
     movie_description: '',
-    learning_material: null
+    learning_material_url: null
   })
   
   onMounted(async () => {
@@ -138,7 +138,7 @@
   })
   
   const handleFileUpload = (event) => {
-    article.value.learning_material = event.target.files[0]
+    article.value.learning_material_url = event.target.files[0]
   }
   
   const submitUpdate = async () => {

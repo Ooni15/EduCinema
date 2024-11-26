@@ -50,13 +50,23 @@ export const useCounterStore = defineStore('counter', () => {
   const createArticle = async (articleData) => {
     try {
       const formData = new FormData()
+      
+      // 일반 데이터 추가
       for (const [key, value] of Object.entries(articleData)) {
-        if (value !== null) {
+        if (key !== 'learning_material_url' && value !== null) {
           formData.append(key, value)
         }
       }
-
-      const response = await axios.post(`${API_URL}/articles/`, formData, {
+  
+      // 파일 데이터 별도 처리
+      if (articleData.learning_material_url) {
+        formData.append('learning_material_url', articleData.learning_material_url)
+      }
+  
+      const response = await axios({
+        method: 'post',
+        url: `${API_URL}/articles/`,
+        data: formData,
         headers: {
           Authorization: `Token ${token.value}`,
           'Content-Type': 'multipart/form-data'
@@ -64,7 +74,9 @@ export const useCounterStore = defineStore('counter', () => {
       })
       return response.data
     } catch (error) {
-      console.error('게시글 작성 실패:', error)
+      if (error.response?.data) {
+        console.error('서버 응답 에러:', error.response.data)
+      }
       throw error
     }
   }
@@ -72,10 +84,16 @@ export const useCounterStore = defineStore('counter', () => {
   const updateArticle = async (articleId, articleData) => {
     try {
       const formData = new FormData()
+      // 일반 데이터 추가
       for (const [key, value] of Object.entries(articleData)) {
-        if (value !== null) {
+        if (key !== 'learning_material_url' && value !== null) {
           formData.append(key, value)
         }
+      }
+  
+      // 파일 데이터 별도 처리
+      if (articleData.learning_material_url) {
+        formData.append('learning_material_url', articleData.learning_material_url)
       }
 
       const response = await axios.put(`${API_URL}/articles/${articleId}/`, formData, {

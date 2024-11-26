@@ -63,30 +63,30 @@
           </div>
 
           <div class="form-group">
-            <label for="learning_material">학습 자료</label>
+            <label for="learning_material_url">학습 자료 (PDF, PPT만 가능)</label>
             <div class="file-upload">
               <input 
                 type="file" 
-                id="learning_material" 
+                id="learning_material_url" 
                 @change="handleFileUpload"
+                accept=".pdf,.ppt,.pptx"
                 class="file-input"
               >
-              <label for="learning_material" class="file-label">
-                파일 선택
+              <label for="learning_material_url" class="file-label">
+                {{ uploadFileName || '파일 선택' }}
               </label>
-            </div>
-
-            <div class="form-group">
-              <label for="movie_description">한 줄 소개</label>
-              <input 
-                type="text" 
-                id="movie_description" 
-                v-model.trim="article.movie_description"
-                placeholder="첨부파일에 대한 간단한 소개를 작성하세요"
-              >
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="movie_description">한 줄 소개</label>
+            <input 
+              type="text" 
+              id="movie_description" 
+              v-model.trim="article.movie_description"
+              placeholder="첨부파일에 대한 간단한 소개를 작성하세요"
+            >
+          </div>
           <button type="submit" class="submit-button">게시글 작성 완료</button>
         </form>
       </div>
@@ -109,7 +109,7 @@ const article = ref({
   technology_type: '',
   content: '',
   movie_description: '',
-  learning_material: null
+  learning_material_url: null
 })
 
 onMounted(async () => {
@@ -120,10 +120,21 @@ onMounted(async () => {
   }
 })
 
-const handleFileUpload = (event) => {
-  article.value.learning_material = event.target.files[0]
-}
+const uploadFileName = ref('')
 
+const handleFileUpload = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    const fileExt = file.name.split('.').pop().toLowerCase()
+    if (['pdf', 'ppt', 'pptx'].includes(fileExt)) {
+      article.value.learning_material_url = file
+      uploadFileName.value = file.name
+    } else {
+      alert('PDF 또는 PPT 파일만 업로드 가능합니다.')
+      event.target.value = ''
+    }
+  }
+}
 const submitArticle = async () => {
   try {
     await store.createArticle(article.value)

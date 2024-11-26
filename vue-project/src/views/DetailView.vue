@@ -32,8 +32,11 @@
             >
             <div class="movie-details">
               <h4>{{ article?.movie?.movie_title }}</h4>
-              <p>{{ article?.movie?.movie_genre }}</p>
-              <p class="tech-type">{{ article?.technology_type }}</p>
+              <p><strong>장르:</strong> {{ article?.movie?.movie_genre }}</p>
+              <p><strong>줄거리:</strong> {{ article?.movie?.movie_synopsis }}</p>
+              <p><strong>평점:</strong> {{ article?.movie?.movie_rating }} / 5.0</p>
+              <p><strong>사용된 기술:</strong> {{ article?.movie?.technologies }}</p>
+              <p class="tech-type"><strong>학습자료에서 사용할 기술:</strong> {{ article?.technology_type }}</p>
             </div>
           </div>
         </div>
@@ -57,8 +60,13 @@
         <!-- 학습 자료 -->
         <div v-if="article?.learning_material_url" class="material-card">
           <h4>학습 자료</h4>
-          <a :href="article.learning_material_url" target="_blank" class="download-button">
-            자료 다운로드
+          <p>{{ getFileName(article.learning_material_url) }} </p>
+          <a 
+            :href="getFullFileUrl(article.learning_material_url)" 
+            :download="getFileName(article.learning_material_url)"
+            class="download-button"
+          >
+            다운로드
           </a>
         </div>
 
@@ -174,6 +182,20 @@ const getFullImageUrl = (posterPath) => {
   const baseUrl = store.API_URL.replace('/api/v1', '')
   return `${baseUrl}${posterPath}`
 }
+// 파일이요
+const getFileName = (filePath) => {
+  if (!filePath) return ''
+  // URL에서 파일명만 추출
+  const fileName = filePath.split('/').pop()
+  // URL 디코딩하여 한글 복원
+  return decodeURIComponent(fileName)
+}
+const getFullFileUrl = (filePath) => {
+  if (!filePath) return ''
+  if (filePath.startsWith('http')) return filePath
+  const baseUrl = store.API_URL.replace('/api/v1', '')
+  return `${baseUrl}${filePath}`
+}
 // 댓글
 // 추가할 ref들
 const editingCommentId = ref(null)
@@ -275,18 +297,51 @@ const deleteComment = async (commentId) => {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.movie-card .movie-content {
-  display: flex;
-  gap: 24px;
-}
-
-.movie-card img {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
+.movie-card {
+  background: #fff;
   border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.movie-content {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.movie-content img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.movie-details {
+  flex: 1;
+}
+
+.movie-details h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.movie-details p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.movie-details strong {
+  color: #666;
+  margin-right: 5px;
+}
+
+.tech-type {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
 .meta-tags {
   display: flex;
   gap: 8px;
