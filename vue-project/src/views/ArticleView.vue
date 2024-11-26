@@ -1,17 +1,12 @@
 <template>
   <div class="article-page">
-    <!-- 네비게이션 경로 -->
-    <div class="breadcrumb">
-      <div class="container">
-        <p>Home > 게시글</p>
-      </div>
-    </div>
+    
 
     <!-- 상단 Hero 섹션 -->
     <div class="hero-section">
       <div class="container">
         <div class="header-content">
-          <h1>게시글 조회</h1>
+          <h1>영화 기반 학습 자료</h1>
         </div>
       </div>
     </div>
@@ -44,12 +39,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* 전체 페이지 스타일 */
 .article-page {
   background: #f9f9f9;
   font-family: Arial, sans-serif;
   padding: 20px 0;
 }
 
+/* 네비게이션 경로 스타일 */
 .breadcrumb {
   background-color: #f0f0f0;
   padding: 10px 20px;
@@ -63,25 +60,34 @@ onMounted(() => {
   font-size: 14px;
 }
 
+/* Hero 섹션 */
 .hero-section {
   margin-bottom: 30px;
   text-align: center;
 }
 
 .hero-section h1 {
-  font-size: 36px;
+  background-color:  #f1f3f5;
+  color:   #333;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.8rem;
+  margin: 0;
   font-weight: bold;
   color: #000;
 }
 
+/* 게시글 리스트 컨테이너 */
 .article-list-container {
   margin-bottom: 30px;
 }
 
+/* 게시글 작성 버튼 컨테이너 */
 .create-button-container {
   text-align: center;
 }
 
+/* 게시글 작성 버튼 스타일 */
 .create-button {
   display: inline-block;
   padding: 15px 30px;
@@ -99,4 +105,3 @@ onMounted(() => {
   background-color: #333;
 }
 </style>
-

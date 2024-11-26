@@ -2,7 +2,7 @@
     <div class="profile-page">
     <!-- 상단 제목 -->
     <div class="hero-section">
-        <h1>사용자 프로필 리스트</h1>
+        <h1>전공자님들을 소개합니다!</h1>
     </div>
 
     <!-- 새로고침 버튼
@@ -67,16 +67,20 @@ onMounted(() => {
 
 /* 제목 스타일 */
 .hero-section {
-    text-align: center;
-    margin-bottom: 30px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .hero-section h1 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #000; /* 검정 텍스트 */
+  background-color:  #f1f3f5;
+  color:   #333;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: bold;
+  color: #000;
 }
-
 /* 새로고침 버튼 */
 .refresh-button-container {
     text-align: center;

@@ -357,7 +357,7 @@ const getCommentsByUser = async (userId) => {
       });
   };
   
-  return { articles, API_URL, getArticles, getMovies, createArticle, getCurrentUser, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut }
+  return { articles, API_URL, getArticles, getMovies, createArticle, getCurrentUser, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail,getArticlesByUser, signUp, logIn, token, isLogin, logOut, getCommentsByUser }
 }, { persist: true })
 
 

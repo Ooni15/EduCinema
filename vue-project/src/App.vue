@@ -23,9 +23,9 @@
     </div>
     <!-- 게시글 메뉴 -->
     <nav class="navbar-menu">
-      <RouterLink :to="{ name: 'ArticleView' }">게시글</RouterLink>
-      <RouterLink :to="{ name: 'CreateView' }">게시글 작성</RouterLink>
-      <RouterLink :to="{ name: 'ProfileListView' }">프로필</RouterLink>
+      <RouterLink :to="{ name: 'ArticleView' }">학습자료</RouterLink>
+      <RouterLink :to="{ name: 'CreateView' }">학습자료 작성</RouterLink>
+      <RouterLink :to="{ name: 'ProfileListView' }">전공자</RouterLink>
       <RouterLink :to="{ name: 'GPTRecommendation' }">AI 추천</RouterLink>
     </nav>
   </header>

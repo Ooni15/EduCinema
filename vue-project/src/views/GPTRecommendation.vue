@@ -135,7 +135,7 @@ margin: 20px 0;
 }
 
 .recommend-button {
-background: #0066ff;
+background: #666;
 color: white;
 border: none;
 padding: 12px 24px;

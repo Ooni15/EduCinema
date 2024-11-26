@@ -2,7 +2,7 @@
   <div class="edit-page">
     <div class="hero-section">
       <div class="container">
-        <h1>게시글 수정</h1>
+        <h1>학습자료 수정</h1>
       </div>
     </div>
 
@@ -102,196 +102,209 @@
   </div>
 </template>
 
-  
-  <script setup>
-  import { ref, onMounted } from 'vue'
-  import { useCounterStore } from '@/stores/counter'
-  import { useRoute, useRouter } from 'vue-router'
-  
-  const store = useCounterStore()
-  const route = useRoute()
-  const router = useRouter()
-  const movies = ref([])
-  const article = ref({
-    title: '',
-    movie: null,
-    related_major: '',
-    technology_type: '',
-    content: '',
-    movie_description: '',
-    learning_material_url: null
-  })
-  
-  onMounted(async () => {
-    try {
-      // 영화 목록 가져오기
-      movies.value = await store.getMovies()
-      // 게시글 상세 정보 가져오기
-      const articleData = await store.getArticleDetail(route.params.id)
-      article.value = {
-        ...articleData,
-        movie: articleData.movie.id
-      }
-    } catch (error) {
-      console.error('데이터 가져오기 실패:', error)
-    }
-  })
-  
-  const handleFileUpload = (event) => {
-    article.value.learning_material_url = event.target.files[0]
-  }
-  
-  const submitUpdate = async () => {
-    try {
-      await store.updateArticle(route.params.id, article.value)
-      router.push(`/articles/${route.params.id}`)
-    } catch (error) {
-      console.error('게시글 수정 실패:', error)
-    }
-  }
-  
-  const goBack = () => {
-    router.go(-1)
-  }
-  </script>
-  
-  <style scoped>
-  .edit-page {
-    min-height: 100vh;
-    background: #f8f9fa;
-  }
-  
-  .hero-section {
-    background: linear-gradient(135deg, #0066ff, #0044cc);
-    padding: 40px 0;
-    color: white;
-    margin-bottom: 40px;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .form-container {
-    background: white;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    margin-bottom: 40px;
-  }
-  
-  .form-group {
-    margin-bottom: 24px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-  }
-  
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #0066ff;
-    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
-  }
-  
-  textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
-  
-  .file-upload {
-    position: relative;
-  }
-  
-  .file-input {
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .file-label {
-    display: inline-block;
-    padding: 12px 24px;
-    background: #f0f7ff;
-    color: #0066ff;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .current-file {
-    display: block;
-    margin-top: 8px;
-    font-size: 14px;
-    color: #666;
-  }
-  
+<style scoped>
+/* 페이지 전체 스타일 */
+.edit-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Hero Section */
+.hero-section {
+  /* background-color: #000;
+  color: white; */
+  background-color:  #f1f3f5;
+  color:   #333;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.hero-section h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 폼 스타일 */
+.form-container {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* 파일 업로드 스타일 */
+.file-upload {
+  position: relative;
+}
+
+.file-input {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #000;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.file-label:hover {
+  background-color: #333;
+}
+
+.current-file {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 버튼 스타일 */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.submit-button {
+  flex: 1;
+  background: #000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  flex: 1;
+  background: #000;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.cancel-button:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
   .button-group {
-    display: flex;
-    gap: 16px;
-    margin-top: 32px;
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  .submit-button, .cancel-button {
-    flex: 1;
-    padding: 16px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+
+  .form-container {
+    padding: 20px;
   }
-  
-  .submit-button {
-    background: #0066ff;
-    color: white;
-  }
-  
-  .submit-button:hover {
-    background: #0052cc;
-    transform: translateY(-2px);
-  }
-  
-  .cancel-button {
-    background: #f8f9fa;
-    color: #666;
-    border: 1px solid #e0e0e0;
-  }
-  
-  .cancel-button:hover {
-    background: #e9ecef;
-    transform: translateY(-2px);
-  }
-  
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-      gap: 0;
+}
+</style>
+
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useCounterStore } from '@/stores/counter'
+import { useRoute, useRouter } from 'vue-router'
+
+const store = useCounterStore()
+const route = useRoute()
+const router = useRouter()
+const movies = ref([])
+const article = ref({
+  title: '',
+  movie: null,
+  related_major: '',
+  technology_type: '',
+  content: '',
+  movie_description: '',
+  learning_material_url: null
+})
+
+onMounted(async () => {
+  try {
+    // 영화 목록 가져오기
+    movies.value = await store.getMovies()
+    // 게시글 상세 정보 가져오기
+    const articleData = await store.getArticleDetail(route.params.id)
+    article.value = {
+      ...articleData,
+      movie: articleData.movie.id
     }
-    
-    .form-container {
-      padding: 20px;
-    }
-    
-    .button-group {
-      flex-direction: column;
-    }
+  } catch (error) {
+    console.error('데이터 가져오기 실패:', error)
   }
-  </style>
+})
+
+const handleFileUpload = (event) => {
+  article.value.learning_material_url = event.target.files[0]
+}
+
+const submitUpdate = async () => {
+  try {
+    await store.updateArticle(route.params.id, article.value)
+    router.push(`/articles/${route.params.id}`)
+  } catch (error) {
+    console.error('게시글 수정 실패:', error)
+  }
+}
+
+const goBack = () => {
+  router.go(-1)
+}
+</script>

@@ -2,7 +2,7 @@
   <div class="create-page">
     <div class="hero-section">
       <div class="container">
-        <h1>새로운 게시글 작성</h1>
+        <h1>학습자료 작성</h1>
       </div>
     </div>
     <div class="container">
@@ -152,14 +152,18 @@ const submitArticle = async () => {
 }
 
 .hero-section {
-  text-align: center; /* 가운데 정렬 */
-  margin-bottom: 30px; /* 여백 추가 */
+  /* background-color: #000;
+  color: white; */
+  background-color:  #f1f3f5;
+  color:   #333;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
 }
 
 .hero-section h1 {
-  font-size: 36px;
-  font-weight: bold;
-  color: #000; /* 검정색으로 변경 */
+  font-size: 1.8rem;
+  margin: 0;
 }
 
 .container {

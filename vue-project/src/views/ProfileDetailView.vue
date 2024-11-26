@@ -1,73 +1,79 @@
 <template>
-    <div class="profile-page">
-        <!-- 프로필 섹션 -->
-        <div class="profile-section">
-            <img
-                v-if="user?.profile_picture"
-                :src="`http://127.0.0.1:8000${user.profile_picture}`"
-                alt="프로필 사진"
-                class="profile-picture"
-            />
-            <div class="profile-info">
-                <h1>{{ user?.username }}</h1>
-                <p><strong>이메일:</strong> {{ user?.email }}</p>
-                <p><strong>전공:</strong> {{ user?.major }}</p>
-                <p><strong>자기소개:</strong> {{ user?.bio }}</p>
-            </div>
-        </div>
-    
-        <hr class="divider" />
-    
-        <!-- 게시글 섹션 -->
-        <div class="articles-section">
-            <h2>게시글 목록</h2>
-            <ul class="article-list">
-                <li v-for="(article, index) in articles" :key="article.id" class="article-card">
-                    <h3>
-                        {{ index + 1 }}.
-                        <RouterLink :to="{ name: 'DetailView', params: { id: article.id } }" class="article-link">
-                            {{ article.title }}
-                        </RouterLink>
-                    </h3>
-                    <p class="article-content">{{ article.content }}</p>
-                    <small>작성일: {{ formatDate(article.created_at) }}</small>
-                </li>
-            </ul>
-        </div>
-    
-        <hr class="divider" />
-    
-        <!-- 댓글 섹션 -->
-        <div class="comments-section">
-            <h2>댓글</h2>
-            <ul class="comments-list">
-                <li v-for="comment in comments" :key="comment.id" class="comment-card">
-                    <p><strong>{{ comment.username }}</strong>: {{ comment.content }}</p>
-                    <small>{{ formatDate(comment.created_at) }}</small>
-    
-                    <!-- 수정 및 삭제 버튼 -->
-                    <div v-if="comment.username === currentUser" class="comment-actions">
-                        <button @click="toggleEdit(comment.id)">수정</button>
-                        <button @click="deleteComment(comment.id)">삭제</button>
-                    </div>
-    
-                    <!-- 수정 폼 -->
-                    <div v-if="editingCommentId === comment.id" class="edit-comment-form">
-                        <textarea v-model="newContent" class="edit-textarea"></textarea>
-                        <button @click="editComment(comment.id, newContent)" class="submit-edit-button">수정 완료</button>
-                        <button @click="cancelEdit" class="cancel-edit-button">취소</button>
-                    </div>
-                </li>
-            </ul>
-    
-            <!-- 댓글 추가 -->
-            <form @submit.prevent="submitComment" class="add-comment-form">
-                <textarea v-model="newComment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
-                <button type="submit" class="submit-comment-button">댓글 작성</button>
-            </form>
-        </div>
-    </div>
+  <div class="profile-page">
+      <!-- 페이지 제목 -->
+      <div class="page-title">
+          <h1>{{ user?.username }}의 프로필</h1>
+      </div>
+
+      <!-- 프로필 섹션 -->
+      <div class="profile-section">
+          <img
+              v-if="user?.profile_picture"
+              :src="`http://127.0.0.1:8000${user.profile_picture}`"
+              alt="프로필 사진"
+              class="profile-picture"
+          />
+          <div class="profile-info">
+              <h2>{{ user?.username }}</h2>
+              <p><strong>이메일:</strong> {{ user?.email }}</p>
+              <p><strong>전공:</strong> {{ user?.major }}</p>
+              <p><strong>자기소개:</strong> {{ user?.bio }}</p>
+          </div>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- 게시글 섹션 -->
+      <div class="articles-section">
+          <h2>게시글 목록</h2>
+          <ul class="article-list">
+              <li v-for="(article, index) in articles" :key="article.id" class="article-card">
+                  <h3>
+                      {{ index + 1 }}.
+                      <RouterLink :to="{ name: 'DetailView', params: { id: article.id } }" class="article-link">
+                          {{ article.title }}
+                      </RouterLink>
+                  </h3>
+                  <p class="article-content">{{ article.content }}</p>
+                  <small>작성일: {{ formatDate(article.created_at) }}</small>
+              </li>
+          </ul>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- 댓글 섹션 -->
+      <div class="comments-section">
+          <h2>댓글</h2>
+          <ul class="comments-list">
+              <li v-for="comment in comments" :key="comment.id" class="comment-card">
+                  <p><strong>{{ comment.username }}</strong>: {{ comment.content }}</p>
+                  <small>{{ formatDate(comment.created_at) }}</small>
+
+                  <!-- 수정 및 삭제 버튼 -->
+                  <div v-if="comment.username === currentUser" class="comment-actions">
+                      <button @click="toggleEdit(comment.id)">수정</button>
+                      <button @click="deleteComment(comment.id)">삭제</button>
+                  </div>
+
+                  <!-- 수정 폼 -->
+                  <div v-if="editingCommentId === comment.id" class="edit-comment-form">
+                      <textarea v-model="newContent" class="edit-textarea"></textarea>
+                      <button @click="editComment(comment.id, newContent)" class="submit-edit-button">수정 완료</button>
+                      <button @click="cancelEdit" class="cancel-edit-button">취소</button>
+                  </div>
+              </li>
+          </ul>
+
+          <!-- 댓글 추가 -->
+          <form @submit.prevent="submitComment" class="add-comment-form">
+              <textarea v-model="newComment" placeholder="댓글을 입력하세요" class="comment-textarea"></textarea>
+              <button type="submit" class="submit-comment-button">댓글 작성</button>
+          </form>
+      </div>
+  </div>
 </template>
+
 
 
 <script setup>
@@ -265,7 +271,7 @@ const formatDate = (dateString) => {
 
 .article-link {
   text-decoration: none;
-  color: #0066ff;
+  color: #333;
 }
 
 .article-link:hover {
