@@ -119,6 +119,35 @@
             </div>
           </div>
         </div>
+        <!-- GPT 챗봇 섹션 -->
+        <div class="gpt-chat-section">
+          <h3>GPT 정보 검색</h3>
+          <div class="chat-messages" id="chat-container">
+            <div 
+              v-for="(message, index) in chatMessages" 
+              :key="index" 
+              class="message"
+              :class="message.role"
+            >
+              {{ message.content }}
+            </div>
+          </div>
+          <div class="chat-input">
+            <input 
+              type="text"
+              v-model="userQuery"
+              @keyup.enter="sendGptQuery"
+              placeholder="영화나 기술에 대해 질문하세요..."
+              class="chat-input-field"
+            >
+            <button 
+              @click="sendGptQuery"
+              class="chat-submit-button"
+            >
+              전송
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -135,6 +164,9 @@ const store = useCounterStore()
 const route = useRoute()
 const article = ref(null)
 const commentContent = ref('') // ref 추가
+// GPT 챗봇 관련 상태 추가
+const chatMessages = ref([])
+const userQuery = ref('')
 // const currentUserId = ref(null) // 현재 로그인한 사용자 ID
 const currentUserId = localStorage.getItem('userId')
 // const currentUser = computed(() => store.token ? JSON.parse(atob(store.token.split('.')[1])).username : null)
@@ -264,6 +296,36 @@ const deleteComment = async (commentId) => {
       console.error('댓글 삭제 실패:', error)
     }
   }
+}
+//chat-bot
+const sendGptQuery = async () => {
+  if (!userQuery.value.trim()) return
+  
+  chatMessages.value.push({ role: 'user', content: userQuery.value })
+  
+  try {
+    const token = localStorage.getItem('token')
+    const response = await axios.post(
+      `${store.API_URL}/articles/${route.params.id}/gpt-query/`, 
+      { user_query: userQuery.value },
+      {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    
+    chatMessages.value.push({ role: 'assistant', content: response.data.answer })
+  } catch (error) {
+    console.error('GPT 쿼리 오류:', error)
+    chatMessages.value.push({ 
+      role: 'assistant', 
+      content: '죄송합니다. 오류가 발생했습니다.' 
+    })
+  }
+  
+  userQuery.value = ''
 }
 </script>
 
@@ -426,5 +488,78 @@ const deleteComment = async (commentId) => {
   .action-buttons {
     flex-direction: column;
   }
+}
+.gpt-chat-section {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message {
+  max-width: 85%;
+  padding: 15px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #4285f4;
+  color: white;
+  border-radius: 20px 20px 4px 20px;
+  margin-left: 15%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: white;
+  color: #333;
+  border-radius: 20px 20px 20px 4px;
+  margin-right: 15%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.chat-input {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  background: white;
+  padding: 15px;
+  border-radius: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.chat-input button {
+  background: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.chat-input button:hover {
+  background: #3367d6;
 }
 </style>
