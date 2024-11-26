@@ -5,6 +5,7 @@
       <div v-if="store.isLogin">
         <RouterLink :to="{ name: 'ArticleView' }">Articles</RouterLink> |
         <RouterLink :to="{ name: 'ProfileListView' }">Profiles</RouterLink> |
+        <RouterLink :to="{ name: 'GPTRecommendation' }">AI 추천</RouterLink> |
         <form @submit.prevent="logOut">
           <input type="submit" value="Logout">
         </form>

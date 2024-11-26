@@ -8,7 +8,7 @@ import EditView from '@/views/EditView.vue'  // EditView import
 import { useCounterStore } from '@/stores/counter'
 import ProfileListView from '@/views/ProfileListView.vue';
 import ProfileDetailView from '@/views/ProfileDetailView.vue';
-
+import GPTRecommendation from '@/views/GPTRecommendation.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +54,12 @@ const router = createRouter({
       component: ProfileDetailView,
       props: true,
     },
+    {
+      path: '/recommendations',
+      name: 'GPTRecommendation',
+      component: GPTRecommendation,
+      meta: { requiresAuth: true }
+    }
   ]
 })
 
