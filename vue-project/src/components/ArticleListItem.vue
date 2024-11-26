@@ -43,17 +43,20 @@ const getMoviePoster = (posterPath) => {
 
 <style scoped>
 .article-card {
-  background: white;
-  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  height: 100%;
+  width: 100%; /* 카드 크기를 그리드에 맞춤 */
+  max-width: 400px; /* 최대 가로 크기 */
+  height: 350px; /* 일정한 높이 */
 }
 
 .article-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .content-wrapper {
@@ -62,70 +65,53 @@ const getMoviePoster = (posterPath) => {
   height: 100%;
 }
 
-.article-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  height: 100%;
-}
-
 .poster-container {
-  position: relative;
-  padding-top: 140%;
+  flex: 2;
   background: #f5f5f5;
 }
 
 .movie-poster {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
 .article-info {
+  flex: 1;
   padding: 20px;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-
-.tags {
-  display: flex;
-  gap: 8px;
-}
-
-.tag {
-  background: #f0f7ff;
-  color: #0066ff;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
+  justify-content: space-between;
 }
 
 .article-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
 }
 
 .meta-wrapper {
-  margin-top: auto;
+  font-size: 14px;
+  color: #666;
 }
 
-.author {
-  color: #666;
+.action-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
 }
 </style>
+
+

@@ -1,4 +1,5 @@
 <template>
+  <body style="background-color: #f9f9f9;">
   <header class="navbar">
     <!-- EduCinema -->
     <div class="navbar-left">
@@ -28,6 +29,7 @@
     </nav>
   </header>
   <RouterView />
+  </body>
 </template>
 
 <script setup>
@@ -42,6 +44,9 @@ const logOut = () => {
 </script>
 
 <style scoped>
+body{
+  background-color: #888;
+}
 /* Navbar 전체 레이아웃 */
 .navbar {
   background-color: #f9f9f9; /* 전체 배경색 통일 */

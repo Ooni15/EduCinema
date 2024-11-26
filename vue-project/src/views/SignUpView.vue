@@ -106,14 +106,12 @@ const password2 = ref(null);
 const major = ref(null);
 const bio = ref(null);
 const profile_picture = ref(null);
-const selectedFileName = ref(""); // 선택한 파일 이름 저장
 
 const store = useCounterStore();
 
 // 파일 업로드 처리 함수
 const handleFileUpload = (event) => {
   profile_picture.value = event.target.files[0];
-  selectedFileName.value = profile_picture.value ? profile_picture.value.name : "";
 };
 
 // 회원가입 요청 함수
@@ -132,14 +130,19 @@ const signUp = () => {
 </script>
 
 <style scoped>
-/* 전체 배경색 및 폼 스타일 */
+/* 전체 페이지 배경색 및 여백 설정 */
+body {
+  margin: 0;
+  background-color: #f9f9f9; /* NavBar와 동일한 배경색 */
+}
+
 .signup-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 60px);
-  padding-top: 60px;
+  min-height: calc(100vh - 60px); /* NavBar 높이만큼 뺌 */
+  padding-top: 60px; /* NavBar 높이만큼 여백 추가 */
   font-family: Arial, sans-serif;
 }
 
@@ -160,7 +163,27 @@ h1 {
   position: relative;
 }
 
-/* 커스텀 파일 선택 버튼 */
+.input-field {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #000;
+  padding: 15px 0;
+  font-size: 20px;
+  color: #000;
+  outline: none;
+  background: none;
+}
+
+.input-field::placeholder {
+  color: #aaa;
+}
+
+.underline {
+  height: 2px;
+  width: 100%;
+  background-color: #000;
+}
+
 .custom-file-label {
   display: inline-block;
   padding: 10px 15px;
@@ -189,7 +212,7 @@ h1 {
   font-style: italic;
 }
 
-/* 버튼 스타일 */
+
 .signup-btn {
   width: 100%;
   padding: 15px;

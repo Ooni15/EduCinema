@@ -16,6 +16,32 @@ export const useCounterStore = defineStore('counter', () => {
   })
   const router = useRouter()
 
+  // 사용자가 작성한 게시글 가져오기
+const getArticlesByUser = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/articles/user/${userId}/articles/`, {
+      headers: { Authorization: `Token ${token.value}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('사용자 게시글 가져오기 실패:', error);
+    throw error;
+  }
+};
+
+const getCommentsByUser = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/user/${userId}/comments/`, {
+      headers: { Authorization: `Token ${token.value}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('사용자 댓글 가져오기 실패:', error);
+    throw error;
+  }
+};
+
+
   // DRF로 전체 게시글 요청을 보내고 응답을 받아 articles에 저장하는 함수
   const getArticles = function () {
     axios({
@@ -288,7 +314,7 @@ export const useCounterStore = defineStore('counter', () => {
       });
   };
   
-  return { articles, API_URL, getArticles, getMovies, createArticle, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut }
+  return { articles, API_URL, getArticles, getMovies, createArticle, updateArticle, deleteArticle, toggleLike, addComment, updateComment, deleteComment, getArticleDetail, signUp, logIn, token, isLogin, logOut, getArticlesByUser, getCommentsByUser}
 }, { persist: true })
 
 
