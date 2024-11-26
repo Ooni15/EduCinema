@@ -13,7 +13,8 @@ class UserSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ['id', 'movie_title', 'movie_genre', 'poster']
+        fields = ['id', 'movie_title', 'movie_genre', 'poster', 'movie_synopsis','movie_rating',
+            'technologies']
 
 class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -50,7 +51,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'content', 'user', 'movie', 
                  'created_at', 'updated_at', 'comments', 
                  'likes_count', 'is_liked', 'related_major', 
-                 'movie_description', 'technology_type']
+                 'movie_description', 'technology_type', 'learning_material_url']
 
     def get_likes_count(self, obj):
         return Like.objects.filter(article=obj).count()

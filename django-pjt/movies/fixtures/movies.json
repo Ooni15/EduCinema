@@ -1,302 +1,626 @@
 [
-  {
-      "model": "movies.Movie",
-      "pk": 1,
-      "fields": {
-          "movie_title": "Ex Machina",
-          "movie_genre": "Science Fiction",
-          "movie_synopsis": "A young programmer is selected to participate in a groundbreaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.",
-          "movie_rating": 4.5,
-          "technologies": "Artificial Intelligence, Robotics",
-          "poster": "movie_posters/movie_ex1.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 2,
-      "fields": {
-          "movie_title": "The Matrix",
-          "movie_genre": "Action, Science Fiction",
-          "movie_synopsis": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
-          "movie_rating": 4.7,
-          "technologies": "Virtual Reality, Computer Hacking",
-          "poster": "movie_posters/movie_ex2.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 3,
-      "fields": {
-          "movie_title": "Jurassic Park",
-          "movie_genre": "Science Fiction, Adventure",
-          "movie_synopsis": "A wealthy entrepreneur creates a theme park with cloned dinosaurs, which soon run amok.",
-          "movie_rating": 4.8,
-          "technologies": "Genetic Engineering, Cloning",
-          "poster": "movie_posters/movie_ex3.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 4,
-      "fields": {
-          "movie_title": "Minority Report",
-          "movie_genre": "Science Fiction, Thriller",
-          "movie_synopsis": "In a future where a special police unit is able to arrest murderers before they commit their crimes, an officer from that unit is himself accused of a future murder.",
-          "movie_rating": 4.2,
-          "technologies": "Predictive Analytics, Biometric Scanning",
-          "poster": "movie_posters/movie_ex4.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 5,
-      "fields": {
-          "movie_title": "The Social Network",
-          "movie_genre": "Drama, Biography",
-          "movie_synopsis": "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",
-          "movie_rating": 4.3,
-          "technologies": "Web Development, Social Media",
-          "poster": "movie_posters/movie_ex5.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 6,
-      "fields": {
-          "movie_title": "2001: A Space Odyssey",
-          "movie_genre": "Science Fiction",
-          "movie_synopsis": "A spacecraft is sent to Jupiter to find the origins of a mysterious artifact found on the Moon.",
-          "movie_rating": 4.3,
-          "technologies": "Artificial Intelligence, Space Exploration",
-          "poster": "movie_posters/movie_ex6.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 7,
-      "fields": {
-          "movie_title": "Blade Runner",
-          "movie_genre": "Science Fiction, Thriller",
-          "movie_synopsis": "A blade runner must pursue and terminate replicants who have returned to Earth.",
-          "movie_rating": 4.1,
-          "technologies": "Artificial Intelligence, Robotics",
-          "poster": "movie_posters/movie_ex7.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 8,
-      "fields": {
-          "movie_title": "Terminator 2: Judgment Day",
-          "movie_genre": "Action, Science Fiction",
-          "movie_synopsis": "A cyborg is sent back in time to protect a boy from a more advanced cyborg.",
-          "movie_rating": 4.6,
-          "technologies": "Artificial Intelligence, Time Travel",
-          "poster": "movie_posters/movie_ex8.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 9,
-      "fields": {
-          "movie_title": "Her",
-          "movie_genre": "Romance, Science Fiction",
-          "movie_synopsis": "A lonely writer develops a relationship with an operating system designed to meet his every need.",
-          "movie_rating": 4.0,
-          "technologies": "Artificial Intelligence, Human-Computer Interaction",
-          "poster": "movie_posters/movie_ex9.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 10,
-      "fields": {
-          "movie_title": "A.I. Artificial Intelligence",
-          "movie_genre": "Science Fiction, Drama",
-          "movie_synopsis": "A highly advanced robotic boy longs to become 'real' so that he can regain the love of his human mother.",
-          "movie_rating": 3.8,
-          "technologies": "Artificial Intelligence, Robotics",
-          "poster": "movie_posters/movie_ex10.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 11,
-      "fields": {
-          "movie_title": "I, Robot",
-          "movie_genre": "Action, Science Fiction",
-          "movie_synopsis": "In 2035, a technophobic cop investigates a crime that may have been perpetrated by a robot.",
-          "movie_rating": 3.7,
-          "technologies": "Robotics, Artificial Intelligence",
-          "poster": "movie_posters/movie_ex11.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 12,
-      "fields": {
-          "movie_title": "Ghost in the Shell",
-          "movie_genre": "Animation, Science Fiction",
-          "movie_synopsis": "A cyborg policewoman and her partner hunt a mysterious and powerful hacker.",
-          "movie_rating": 3.9,
-          "technologies": "Cybernetics, Artificial Intelligence",
-          "poster": "movie_posters/movie_ex12.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 13,
-      "fields": {
-          "movie_title": "Iron Man",
-          "movie_genre": "Action, Adventure",
-          "movie_synopsis": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
-          "movie_rating": 4.5,
-          "technologies": "Exoskeletons, Advanced Computing Systems",
-          "poster": "movie_posters/movie_ex13.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 14,
-      "fields": {
-          "movie_title": "Elysium",
-          "movie_genre": "Action, Drama",
-          "movie_synopsis": "In the year 2154, the very wealthy live on a man-made space station while the rest of the population resides on a ruined Earth.",
-          "movie_rating": 3.6,
-          "technologies": "Space Habitats, Exoskeletons",
-          "poster": "movie_posters/movie_ex14.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 15,
-      "fields": {
-          "movie_title": "Ender's Game",
-          "movie_genre": "Action, Adventure",
-          "movie_synopsis": "Young Ender Wiggin is recruited by the International Military to lead the fight against the Formics.",
-          "movie_rating": 3.5,
-          "technologies": "Autonomous Weapons Systems, Space Warfare",
-          "poster": "movie_posters/movie_ex15.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 16,
-      "fields": {
-          "movie_title": "Inception",
-          "movie_genre": "Science Fiction, Action",
-          "movie_synopsis": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-          "movie_rating": 4.8,
-          "technologies": "Dream Manipulation, Neurotechnology",
-          "poster": "movie_posters/movie_ex16.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 17,
-      "fields": {
-          "movie_title": "The Martian",
-          "movie_genre": "Science Fiction, Drama",
-          "movie_synopsis": "An astronaut becomes stranded on Mars after his team assume him dead, and must rely on his ingenuity to find a way to signal to Earth that he is alive.",
-          "movie_rating": 4.4,
-          "technologies": "Space Exploration, Botany in Space",
-          "poster": "movie_posters/movie_ex17.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 18,
-      "fields": {
-          "movie_title": "Interstellar",
-          "movie_genre": "Science Fiction, Adventure",
-          "movie_synopsis": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-          "movie_rating": 4.6,
-          "technologies": "Wormhole Travel, Relativity",
-          "poster": "movie_posters/movie_ex18.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 19,
-      "fields": {
-          "movie_title": "WALL-E",
-          "movie_genre": "Animation, Science Fiction",
-          "movie_synopsis": "In a distant, but not so unrealistic, future where mankind has abandoned earth because it has become covered with trash from products sold by the powerful multi-national Buy N Large corporation, WALL-E, a garbage collecting robot has been left to clean up the mess.",
-          "movie_rating": 4.5,
-          "technologies": "Robotics, Environmental Technology",
-          "poster": "movie_posters/movie_ex19.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 20,
-      "fields": {
-          "movie_title": "Gattaca",
-          "movie_genre": "Science Fiction, Drama",
-          "movie_synopsis": "A genetically inferior man assumes the identity of a superior one in order to pursue his lifelong dream of space travel.",
-          "movie_rating": 4.1,
-          "technologies": "Genetic Engineering, Biometric Identification",
-          "poster": "movie_posters/movie_ex20.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 21,
-      "fields": {
-          "movie_title": "Ready Player One",
-          "movie_genre": "Science Fiction, Action",
-          "movie_synopsis": "When the creator of a virtual reality world called the OASIS dies, he releases a video in which he challenges all OASIS users to find his Easter Egg, which will give the finder his fortune.",
-          "movie_rating": 3.9,
-          "technologies": "Virtual Reality, Haptic Technology",
-          "poster": "movie_posters/movie_ex21.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 22,
-      "fields": {
-          "movie_title": "Transcendence",
-          "movie_genre": "Science Fiction, Drama",
-          "movie_synopsis": "A scientist's drive for artificial intelligence takes on dangerous implications when his consciousness is uploaded into one such program.",
-          "movie_rating": 3.3,
-          "technologies": "Artificial Intelligence, Nanotechnology",
-          "poster": "movie_posters/movie_ex22.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 23,
-      "fields": {
-          "movie_title": "Avatar",
-          "movie_genre": "Science Fiction, Action",
-          "movie_synopsis": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
-          "movie_rating": 4.2,
-          "technologies": "Neural Interface, 3D Holography",
-          "poster": "movie_posters/movie_ex23.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 24,
-      "fields": {
-          "movie_title": "The Imitation Game",
-          "movie_genre": "Biography, Drama",
-          "movie_synopsis": "During World War II, the English mathematical genius Alan Turing tries to crack the German Enigma code with help from fellow mathematicians.",
-          "movie_rating": 4.4,
-          "technologies": "Cryptography, Early Computing",
-          "poster": "movie_posters/movie_ex24.jpg"
-      }
-  },
-  {
-      "model": "movies.Movie",
-      "pk": 25,
-      "fields": {
-          "movie_title": "Primer",
-          "movie_genre": "Science Fiction, Thriller",
-          "movie_synopsis": "Four friends/fledgling entrepreneurs, knowing that there's something bigger and more innovative than the different error-checking devices they've built, wrestle over their new invention.",
-          "movie_rating": 3.8,
-          "technologies": "Time Travel, Quantum Mechanics",
-          "poster": "movie_posters/movie_ex25.jpg"
-      }
-  }
+    {
+        "model": "movies.Movie",
+        "pk": 1,
+        "fields": {
+            "movie_title": "엑스 마키나",
+            "movie_genre": "공상 과학",
+            "movie_synopsis": "젊은 프로그래머가 고도로 발전된 인간형 AI의 인간적 특성을 평가하는 획기적인 실험에 참여하도록 선발됩니다.",
+            "movie_rating": 4.5,
+            "technologies": "인공지능, 로봇공학",
+            "poster": "movie_posters/movie_ex1.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 2,
+        "fields": {
+            "movie_title": "매트릭스",
+            "movie_genre": "액션, 공상 과학",
+            "movie_synopsis": "컴퓨터 해커가 신비한 반군들로부터 자신의 현실의 진정한 본질과 그 현실을 통제하는 세력에 대항하는 자신의 역할에 대해 알게 됩니다.",
+            "movie_rating": 4.7,
+            "technologies": "가상 현실, 컴퓨터 해킹",
+            "poster": "movie_posters/movie_ex2.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 3,
+        "fields": {
+            "movie_title": "쥬라기 공원",
+            "movie_genre": "공상 과학, 모험",
+            "movie_synopsis": "부유한 사업가가 복제된 공룡들로 테마파크를 만들지만, 곧 공룡들이 통제를 벗어납니다.",
+            "movie_rating": 4.8,
+            "technologies": "유전공학, 복제",
+            "poster": "movie_posters/movie_ex3.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 4,
+        "fields": {
+            "movie_title": "마이너리티 리포트",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "특수 경찰 부대가 범죄가 일어나기 전에 살인자들을 체포할 수 있는 미래에서, 그 부대의 한 경관이 자신이 미래의 살인을 저지를 것이라는 혐의를 받습니다.",
+            "movie_rating": 4.2,
+            "technologies": "예측 분석, 생체 인식",
+            "poster": "movie_posters/movie_ex4.jpg"
+        }
+    },
+    {   
+        "model": "movies.Movie",
+        "pk": 5,
+        "fields": {
+            "movie_title": "소셜 네트워크",
+            "movie_genre": "드라마, 전기",
+            "movie_synopsis": "하버드 학생 마크 주커버그가 페이스북으로 알려지게 될 소셜 네트워킹 사이트를 만들면서, 자신의 아이디어를 훔쳤다고 주장하는 쌍둥이와 나중에 회사에서 밀려난 공동 창업자로부터 소송을 당합니다.",
+            "movie_rating": 4.3,
+            "technologies": "웹 개발, 소셜 미디어",
+            "poster": "movie_posters/movie_ex5.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 6,
+        "fields": {
+            "movie_title": "2001: 스페이스 오디세이",
+            "movie_genre": "공상 과학",
+            "movie_synopsis": "달에서 발견된 신비한 인공물의 기원을 찾기 위해 우주선이 목성으로 보내집니다.",
+            "movie_rating": 4.3,
+            "technologies": "인공지능, 우주 탐사",
+            "poster": "movie_posters/movie_ex6.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 7,
+        "fields": {
+            "movie_title": "블레이드 러너",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "블레이드 러너는 지구로 돌아온 레플리컨트들을 추적하고 제거해야 합니다.",
+            "movie_rating": 4.1,
+            "technologies": "인공지능, 로봇공학",
+            "poster": "movie_posters/movie_ex7.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 8,
+        "fields": {
+            "movie_title": "터미네이터 2: 심판의 날",
+            "movie_genre": "액션, 공상 과학",
+            "movie_synopsis": "사이보그가 더 발전된 사이보그로부터 소년을 보호하기 위해 과거로 보내집니다.",
+            "movie_rating": 4.6,
+            "technologies": "인공지능, 시간 여행",
+            "poster": "movie_posters/movie_ex8.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 9,
+        "fields": {
+            "movie_title": "그녀",
+            "movie_genre": "로맨스, 공상 과학",
+            "movie_synopsis": "외로운 작가가 자신의 모든 요구를 충족시키도록 설계된 운영 체제와 관계를 발전시킵니다.",
+            "movie_rating": 4.0,
+            "technologies": "인공지능, 인간-컴퓨터 상호작용",
+            "poster": "movie_posters/movie_ex9.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 10,
+        "fields": {
+            "movie_title": "A.I. 인공지능",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "고도로 발전된 로봇 소년이 '진짜'가 되어 인간 어머니의 사랑을 되찾기를 갈망합니다.",
+            "movie_rating": 3.8,
+            "technologies": "인공지능, 로봇공학",
+            "poster": "movie_posters/movie_ex10.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 11,
+        "fields": {
+            "movie_title": "아이, 로봇",
+            "movie_genre": "액션, 공상 과학",
+            "movie_synopsis": "2035년, 기술 공포증을 가진 경찰관이 로봇에 의해 저질러졌을 수 있는 범죄를 수사합니다.",
+            "movie_rating": 3.7,
+            "technologies": "로봇공학, 인공지능",
+            "poster": "movie_posters/movie_ex11.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 12,
+        "fields": {
+            "movie_title": "공각기동대",
+            "movie_genre": "애니메이션, 공상 과학",
+            "movie_synopsis": "사이보그 여경과 그녀의 파트너가 신비하고 강력한 해커를 추적합니다.",
+            "movie_rating": 3.9,
+            "technologies": "사이버네틱스, 인공지능",
+            "poster": "movie_posters/movie_ex12.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 13,
+        "fields": {
+            "movie_title": "아이언맨",
+            "movie_genre": "액션, 모험",
+            "movie_synopsis": "아프가니스탄 동굴에 감금된 후 억만장자 엔지니어 토니 스타크는 악과 싸우기 위해 독특한 무장 수트를 만듭니다.",
+            "movie_rating": 4.5,
+            "technologies": "외골격, 고급 컴퓨팅 시스템",
+            "poster": "movie_posters/movie_ex13.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 14,
+        "fields": {
+            "movie_title": "엘리시움",
+            "movie_genre": "액션, 드라마",
+            "movie_synopsis": "2154년, 매우 부유한 사람들은 인공 우주 정거장에 살고 나머지 인구는 황폐화된 지구에 거주합니다.",
+            "movie_rating": 3.6,
+            "technologies": "우주 서식지, 외골격",
+            "poster": "movie_posters/movie_ex14.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 15,
+        "fields": {
+            "movie_title": "엔더의 게임",
+            "movie_genre": "액션, 모험",
+            "movie_synopsis": "젊은 엔더 위긴이 국제 군사에 의해 포믹스와의 전쟁을 이끌기 위해 모집됩니다.",
+            "movie_rating": 3.5,
+            "technologies": "자율 무기 시스템, 우주 전쟁",
+            "poster": "movie_posters/movie_ex15.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 16,
+        "fields": {
+            "movie_title": "인셉션",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "꿈 공유 기술을 사용하여 기업 비밀을 훔치는 도둑이 CEO의 마음에 아이디어를 심는 임무를 맡습니다.",
+            "movie_rating": 4.8,
+            "technologies": "꿈 조작, 신경 기술",
+            "poster": "movie_posters/movie_ex16.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 17,
+        "fields": {
+            "movie_title": "마션",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "화성에 홀로 남겨진 우주비행사가 자신이 살아있음을 지구에 알리기 위해 창의력을 발휘해야 합니다.",
+            "movie_rating": 4.4,
+            "technologies": "우주 탐사, 우주 식물학",
+            "poster": "movie_posters/movie_ex17.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 18,
+        "fields": {
+            "movie_title": "인터스텔라",
+            "movie_genre": "공상 과학, 모험",
+            "movie_synopsis": "탐험가 팀이 인류 생존을 보장하기 위해 웜홀을 통해 우주를 여행합니다.",
+            "movie_rating": 4.6,
+            "technologies": "웜홀 여행, 상대성 이론",
+            "poster": "movie_posters/movie_ex18.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 19,
+        "fields": {
+            "movie_title": "월-E",
+            "movie_genre": "애니메이션, 공상 과학",
+            "movie_synopsis": "멀지 않은 미래, 강력한 다국적 기업 바이 앤 라지의 제품들로 인해 쓰레기로 뒤덮인 지구를 인류가 떠난 후, 쓰레기 수거 로봇 월-E가 그 혼란을 정리하기 위해 남겨집니다.",
+            "movie_rating": 4.5,
+            "technologies": "로봇공학, 환경 기술",
+            "poster": "movie_posters/movie_ex19.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 20,
+        "fields": {
+            "movie_title": "가타카",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "유전적으로 열등한 남자가 우주 여행이라는 평생의 꿈을 이루기 위해 유전적으로 우수한 사람의 신분을 가장합니다.",
+            "movie_rating": 4.1,
+            "technologies": "유전 공학, 생체 인식",
+            "poster": "movie_posters/movie_ex20.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 21,
+        "fields": {
+            "movie_title": "레디 플레이어 원",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "가상 현실 세계 오아시스의 창시자가 사망하면서 모든 사용자들에게 자신의 이스터 에그를 찾아 그의 재산을 상속받으라는 도전을 남깁니다.",
+            "movie_rating": 3.9,
+            "technologies": "가상 현실, 햅틱 기술",
+            "poster": "movie_posters/movie_ex21.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 22,
+        "fields": {
+            "movie_title": "트랜센던스",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "과학자의 인공지능 연구에 대한 집착이 자신의 의식을 프로그램에 업로드하면서 위험한 결과를 초래합니다.",
+            "movie_rating": 3.3,
+            "technologies": "인공지능, 나노기술",
+            "poster": "movie_posters/movie_ex22.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 23,
+        "fields": {
+            "movie_title": "아바타",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "하반신 마비 해병대원이 판도라 위성으로 파견되어 독특한 임무를 수행하며 자신의 명령과 새로운 고향을 보호하려는 갈등에 직면합니다.",
+            "movie_rating": 4.2,
+            "technologies": "신경 인터페이스, 3D 홀로그래피",
+            "poster": "movie_posters/movie_ex23.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 24,
+        "fields": {
+            "movie_title": "이미테이션 게임",
+            "movie_genre": "전기, 드라마",
+            "movie_synopsis": "제2차 세계대전 중, 영국의 수학 천재 앨런 튜링이 동료 수학자들의 도움을 받아 독일의 에니그마 암호를 해독하려 합니다.",
+            "movie_rating": 4.4,
+            "technologies": "암호학, 초기 컴퓨팅",
+            "poster": "movie_posters/movie_ex24.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 25,
+        "fields": {
+            "movie_title": "프라이머",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "네 명의 친구와 신생 사업가들이 자신들이 만든 오류 검사 장치보다 더 크고 혁신적인 발명품을 놓고 고민합니다.",
+            "movie_rating": 3.8,
+            "technologies": "시간 여행, 양자 역학",
+            "poster": "movie_posters/movie_ex25.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 26,
+        "fields": {
+            "movie_title": "채피",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "범죄를 단속하는 드로이드 중 하나인 '채피'가 자아를 가지게 되며 벌어지는 이야기.",
+            "movie_rating": 4.0,
+            "technologies": "인공지능, 로봇공학",
+            "poster": "movie_posters/movie_ex26.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 27,
+        "fields": {
+            "movie_title": "오블리비언",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "외계인과의 전쟁으로 황폐화된 지구에서 드론 정비사 잭 하퍼가 숨겨진 진실을 발견합니다.",
+            "movie_rating": 3.9,
+            "technologies": "드론 기술, 기억 조작",
+            "poster": "movie_posters/movie_ex27.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 28,
+        "fields": {
+            "movie_title": "오토마타",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "로봇 보험 조사관이 자율적으로 진화하는 로봇들의 비밀을 파헤칩니다.",
+            "movie_rating": 3.6,
+            "technologies": "자율 로봇, 인공지능",
+            "poster": "movie_posters/movie_ex28.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 29,
+        "fields": {
+            "movie_title": "더 머신",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "'완벽한 안드로이드 병기'를 개발하려다 예상치 못한 결과를 초래하는 이야기.",
+            "movie_rating": 3.5,
+            "technologies": "안드로이드 기술, 자율 무기 시스템",
+            "poster": "movie_posters/movie_ex29.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 30,
+        "fields": {
+            "movie_title": "문",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "달에서 3년간 자원 채굴 임무를 수행하던 우주 비행사 샘 벨은 자신의 정체성과 임무에 대해 의문을 품게 되고, AI 컴퓨터 '거티'와 함께 진실을 파헤칩니다.",
+            "movie_rating": 4.1,
+            "technologies": "우주 탐사, AI 조력 시스템",
+            "poster": "movie_posters/movie_ex30.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 31,
+        "fields": {
+            "movie_title": "웨스트월드",
+            "movie_genre": "공상 과학, 서부극",
+            "movie_synopsis": "서부 시대를 배경으로 한 놀이공원에서 AI 로봇들이 오작동하며 인간들을 공격하기 시작합니다.",
+            "movie_rating": 4.3,
+            "technologies": "AI 놀이공원, 로봇공학",
+            "poster": "movie_posters/movie_ex31.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 32,
+        "fields": {
+            "movie_title": "크리에이터",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "핵전쟁 이후 AI와의 전쟁이 벌어지는 세상에서 주인공이 강력한 무기를 제작한 '니르마타'의 정체를 밝혀내려는 여정을 다룹니다.",
+            "movie_rating": 4.0,
+            "technologies": "AI 무기 시스템, 로봇 동반자",
+            "poster": "movie_posters/movie_ex32.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 33,
+        "fields": {
+            "movie_title": "토탈 리콜",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "'로보 택시'와 같은 미래 기술이 등장하는 영화로, 주인공이 자신의 기억이 조작되었음을 깨닫고 진실을 추구합니다.",
+            "movie_rating": 3.8,
+            "technologies": "기억 조작, 로보 택시",
+            "poster": "movie_posters/movie_ex33.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 34,
+        "fields": {
+            "movie_title": "설국열차",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "빙하기로 인해 지구가 얼어붙은 미래, 생존자들이 탑승한 열차 안에서 계급 투쟁이 벌어지는 이야기.",
+            "movie_rating": 4.3,
+            "technologies": "동시통역기, 지속 가능한 에너지",
+            "poster": "movie_posters/movie_ex34.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 35,
+        "fields": {
+            "movie_title": "반도",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "좀비 바이러스가 퍼진 한국에서 생존자들이 탈출을 시도하며 벌어지는 이야기.",
+            "movie_rating": 3.8,
+            "technologies": "풀 CG 좀비, 디지털 스튜디오 제작",
+            "poster": "movie_posters/movie_ex35.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 36,
+        "fields": {
+            "movie_title": "괴물",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "한강에 나타난 괴생명체가 가족의 소녀를 납치하며 벌어지는 사건과 그에 맞서는 가족의 이야기.",
+            "movie_rating": 4.1,
+            "technologies": "CG 괴물 제작, 시각효과",
+            "poster": "movie_posters/movie_ex36.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 37,
+        "fields": {
+            "movie_title": "염력",
+            "movie_genre": "공상 과학, 코미디",
+            "movie_synopsis": "초능력을 얻게 된 평범한 아버지가 딸을 구하기 위해 벌이는 이야기.",
+            "movie_rating": 3.5,
+            "technologies": "와이어 액션, CG 초능력 구현",
+            "poster": "movie_posters/movie_ex37.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 38,
+        "fields": {
+            "movie_title": "미스터 고",
+            "movie_genre": "드라마, 공상 과학",
+            "movie_synopsis": "야구를 하는 고릴라와 그의 트레이너가 한국 프로야구에 도전하며 벌어지는 이야기.",
+            "movie_rating": 3.6,
+            "technologies": "CG 캐릭터 제작, 모션 캡처",
+            "poster": "movie_posters/movie_ex38.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 39,
+        "fields": {
+            "movie_title": "승리호",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "2092년, 우주 쓰레기를 청소하며 살아가는 승리호 선원들이 대량 살상 무기로 알려진 인간형 로봇을 발견하며 벌어지는 이야기.",
+            "movie_rating": 4.0,
+            "technologies": "우주선 기술, 로봇공학",
+            "poster": "movie_posters/movie_ex39.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 40,
+        "fields": {
+            "movie_title": "인랑",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "근미래의 한국에서 특수 경찰부대와 반정부 세력 간의 충돌 속에서 벌어지는 이야기.",
+            "movie_rating": 3.2,
+            "technologies": "강화 슈트, 무기 시스템",
+            "poster": "movie_posters/movie_ex40.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 41,
+        "fields": {
+            "movie_title": "시간이탈자",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "1983년과 2015년을 살아가는 두 남자가 꿈을 통해 서로 연결되며 사건을 해결하는 이야기.",
+            "movie_rating": 3.8,
+            "technologies": "시간 연결, 초자연적 기술",
+            "poster": "movie_posters/movie_ex41.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 42,
+        "fields": {
+            "movie_title": "Upgrade",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "'스팀'이라는 AI 칩을 이식받은 남자가 자신의 아내를 죽인 범죄자들에게 복수하는 이야기.",
+            "movie_rating": 4.0,
+            "technologies": "AI 칩 이식, 사이버네틱스",
+            "poster": "movie_posters/movie_ex42.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 43,
+        "fields": {
+            "movie_title": "Lucy",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "약물로 인해 초인적인 지능과 능력을 얻게 된 루시가 자신의 잠재력을 극한까지 끌어올리는 이야기.",
+            "movie_rating": 4.0,
+            "technologies": "뇌 활용 극대화, 신경 과학",
+            "poster": "movie_posters/movie_ex43.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 44,
+        "fields": {
+            "movie_title": "The Mitchells vs. The Machines",
+            "movie_genre": "애니메이션, 공상 과학, 코미디",
+            "movie_synopsis": "미첼 가족이 세계를 정복하려는 로봇들에 맞서 싸우며 가족의 유대를 회복하는 이야기.",
+            "movie_rating": 4.5,
+            "technologies": "로봇공학, 인공지능 반란",
+            "poster": "movie_posters/movie_ex44.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 45,
+        "fields": {
+            "movie_title": "Tenet",
+            "movie_genre": "공상 과학, 스릴러",
+            "movie_synopsis": "'인버전'이라는 시간을 거스르는 기술을 이용해 세계를 구하려는 비밀 요원의 이야기.",
+            "movie_rating": 4.2,
+            "technologies": "시간 역행, 물리학",
+            "poster": "movie_posters/movie_ex45.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 46,
+        "fields": {
+            "movie_title": "Bloodshot",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "죽은 군인이 나노 기술로 되살아나 초인적인 능력을 얻게 되고, 자신의 과거에 숨겨진 음모를 파헤칩니다.",
+            "movie_rating": 3.6,
+            "technologies": "나노 기술, 생체 강화",
+            "poster": "movie_posters/movie_ex46.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 47,
+        "fields": {
+            "movie_title": "The Creator",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "AI와의 전쟁이 벌어지는 세상에서 강력한 무기를 제작한 '니르마타'의 정체를 밝히려는 여정을 다룹니다.",
+            "movie_rating": 4.0,
+            "technologies": "AI 무기 시스템, 로봇 동반자",
+            "poster": "movie_posters/movie_ex47.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 48,
+        "fields": {
+            "movie_title": "Archive",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "2038년을 배경으로, 죽은 아내를 AI 휴머노이드 로봇으로 구현하려는 과학자의 이야기.",
+            "movie_rating": 4.0,
+            "technologies": "AI 휴머노이드, 감정 시뮬레이션",
+            "poster": "movie_posters/movie_ex48.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 49,
+        "fields": {
+            "movie_title": "정이 (Jung_E)",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "22세기, 지구가 살기 힘든 환경이 된 후 우주 정거장에서 벌어지는 내전 속에서 전설적인 전사를 복제한 군사 AI 개발 프로젝트를 다룬 이야기.",
+            "movie_rating": 4.0,
+            "technologies": "인공지능, 군사 로봇공학",
+            "poster": "movie_posters/movie_ex49.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 50,
+        "fields": {
+            "movie_title": "원더랜드 (Wonderland)",
+            "movie_genre": "공상 과학, 판타지",
+            "movie_synopsis": "AI 서비스 '원더랜드'를 통해 죽은 사람들과 영상 통화를 할 수 있는 기술을 이용하는 사람들의 이야기를 다룬 영화.",
+            "movie_rating": 4.2,
+            "technologies": "AI 기반 가상 커뮤니케이션",
+            "poster": "movie_posters/movie_ex50.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 51,
+        "fields": {
+            "movie_title": "무빙 (Moving)",
+            "movie_genre": "공상 과학, 액션",
+            "movie_synopsis": "초능력을 가진 가족들이 자신들의 능력을 숨기며 살아가다 위기에 처한 세상을 구하려는 이야기.",
+            "movie_rating": 4.5,
+            "technologies": "디지털 더블, 초능력 시각효과",
+            "poster": "movie_posters/movie_ex51.jpg"
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "pk": 52,
+        "fields": {
+            "movie_title": "2067",
+            "movie_genre": "공상 과학, 드라마",
+            "movie_synopsis": "지구의 생명체가 대부분 사라진 미래에서, 주인공이 시간여행을 통해 인류 멸종을 막으려는 이야기.",
+            "movie_rating": 3.7,
+            "technologies": "시간 여행, AI 핸드 컴퓨터",
+            "poster": "movie_posters/movie_ex52.jpg"
+        }
+    }
 ]
