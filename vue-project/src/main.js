@@ -8,6 +8,7 @@ const app = createApp(App)
 const pinia = createPinia()
 
 pinia.use(piniaPluginPersistedstate)
+export default pinia // vue Persist는 애플리케이션 상태를 특정 스토리지에 저장
 // app.use(createPinia())
 app.use(pinia)
 app.use(router)

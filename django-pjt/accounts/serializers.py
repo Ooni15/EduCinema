@@ -3,7 +3,7 @@ from rest_framework import serializers
 from accounts.models import User
 from rest_framework.authtoken.models import Token
 from articles.models import Article  # Post 모델 가져오기
-
+from .models import ProfileComment, UserLike
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -28,3 +28,17 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.save()  # 데이터 저장
         Token.objects.get_or_create(user=user)  # 토큰 생성
         return user
+
+
+class UserLikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserLike
+        fields = ['id', 'user', 'liked_user', 'created_at']
+
+
+class ProfileCommentSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = ProfileComment
+        fields = ['id', 'username', 'content', 'created_at', 'updated_at']
