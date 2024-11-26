@@ -148,14 +148,18 @@ const submitArticle = async () => {
 <style scoped>
 .create-page {
   min-height: 100vh;
-  background: #f8f9fa;
+  background: #f9f9f9; /* Article 페이지와 동일한 배경색 */
 }
 
 .hero-section {
-  background: linear-gradient(135deg, #0066ff, #0044cc);
-  padding: 20px 0;
-  color: white;
-  margin-bottom: 20px;
+  text-align: center; /* 가운데 정렬 */
+  margin-bottom: 30px; /* 여백 추가 */
+}
+
+.hero-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #000; /* 검정색으로 변경 */
 }
 
 .container {
@@ -168,7 +172,7 @@ const submitArticle = async () => {
   background: white;
   border-radius: 16px;
   padding: 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1); /* 카드와 동일한 그림자 */
   margin-bottom: 40px;
 }
 
@@ -176,23 +180,18 @@ const submitArticle = async () => {
   margin-bottom: 24px;
 }
 
-.form-row {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 24px;
-}
-
 label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 16px;
   color: #333;
 }
 
 input, select, textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease;
@@ -200,8 +199,8 @@ input, select, textarea {
 
 input:focus, select:focus, textarea:focus {
   outline: none;
-  border-color: #0066ff;
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+  border-color: #333; /* 포커스 시 검정 강조 */
+  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
 }
 
 textarea {
@@ -224,47 +223,43 @@ textarea {
 .file-label {
   display: inline-block;
   padding: 12px 24px;
-  background: #f0f7ff;
-  color: #0066ff;
+  background: #e0e0e0; /* 연한 검정색 */
+  color: #333; /* 검정 텍스트 */
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .file-label:hover {
-  background: #e0f0ff;
+  background: #c0c0c0; /* hover 시 약간 어두운 색 */
 }
 
 .submit-button {
-  width: 30%;
+  width: 100%;
   padding: 16px;
-  background: #0066ff;
+  background: #333; /* 게시물 작성 완료 버튼 */
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-  background: #0052cc;
+  background: #555;
   transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-  .form-row {
-    flex-direction: column;
-    gap: 0;
-  }
-  
   .form-container {
     padding: 20px;
   }
-  
+
   .container {
     padding: 0 16px;
   }
 }
 </style>
+
