@@ -44,12 +44,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* 전체 페이지 스타일 */
 .article-page {
   background: #f9f9f9;
   font-family: Arial, sans-serif;
   padding: 20px 0;
 }
 
+/* 네비게이션 경로 스타일 */
 .breadcrumb {
   background-color: #f0f0f0;
   padding: 10px 20px;
@@ -63,6 +65,7 @@ onMounted(() => {
   font-size: 14px;
 }
 
+/* Hero 섹션 */
 .hero-section {
   margin-bottom: 30px;
   text-align: center;
@@ -74,14 +77,17 @@ onMounted(() => {
   color: #000;
 }
 
+/* 게시글 리스트 컨테이너 */
 .article-list-container {
   margin-bottom: 30px;
 }
 
+/* 게시글 작성 버튼 컨테이너 */
 .create-button-container {
   text-align: center;
 }
 
+/* 게시글 작성 버튼 스타일 */
 .create-button {
   display: inline-block;
   padding: 15px 30px;
@@ -99,4 +105,3 @@ onMounted(() => {
   background-color: #333;
 }
 </style>
-
