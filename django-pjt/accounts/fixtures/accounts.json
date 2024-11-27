@@ -1,0 +1,275 @@
+[
+{
+"model": "accounts.user",
+"pk": 1,
+"fields": {
+"password": "pbkdf2_sha256$600000$h4xz0D9uEX5NENoMh9RTgm$A2Ug7PAZqvvYgRz68OIcvrWkqhKS/xAe3Uj/+5QZzig=",
+"last_login": null,
+"is_superuser": false,
+"username": "명랑운",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:02:59.121Z",
+"email": "audfkddns@naver.com",
+"profile_picture": "profile_pictures/SW개발_황치현_1988.jpg",
+"major": "항공전자정보공학",
+"bio": "안녕하세요! 저는 명랑운입니다~!\r\n항공 관련 자료 공유드려요~!~!",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 2,
+"fields": {
+"password": "pbkdf2_sha256$600000$60F2NA6MLGLfWprC3iAi7d$5Vd/TzJ60ZvvC/YwBlPlRZs2TFqvOTqVDADvV4X0HvY=",
+"last_login": null,
+"is_superuser": false,
+"username": "손승범",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:16:24.074Z",
+"email": "son@naver.com",
+"profile_picture": "profile_pictures/프로필1.jpg",
+"major": "경영",
+"bio": "whasup bro~\r\nmy name is Son",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 3,
+"fields": {
+"password": "pbkdf2_sha256$600000$0mCYgMoBuR3sBwcaHl7tZF$wguFbDI4RBZmY/mWDLkPDFZPrr8oiiCeD/Nl5aTqRms=",
+"last_login": null,
+"is_superuser": false,
+"username": "봇종현",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:18:33.146Z",
+"email": "jonghyun@naver.com",
+"profile_picture": "profile_pictures/프로필2.jpg",
+"major": "인공지능",
+"bio": "안녕하세요 인공지능 Bot 종현 입니다.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 4,
+"fields": {
+"password": "pbkdf2_sha256$600000$alUtlGXAKpwXPuWv58qcB3$ChbjOrcsDtdfby3hCLdrZnpVbYx4k45YwPVwezlrTeo=",
+"last_login": null,
+"is_superuser": false,
+"username": "메타몽",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:20:09.416Z",
+"email": "meta@naver.com",
+"profile_picture": "profile_pictures/프로필3.jpg",
+"major": "임베디드시스템공학과",
+"bio": "안녕하세요.\r\n반갑습니다.\r\n좋은 정보 공유 부탁드립니다.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 5,
+"fields": {
+"password": "pbkdf2_sha256$600000$fg3nrs90oAEZZwsYqRCs0H$x3hh4Xp7rcap/EvPQ/risNVUnTvjkrbMBGkhwLQk2us=",
+"last_login": null,
+"is_superuser": false,
+"username": "백크종원",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:24:25.491Z",
+"email": "back@naver.com",
+"profile_picture": "profile_pictures/프로필5.jpg",
+"major": "공상요리학과",
+"bio": "Yo~\r\nHisassiburi",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 6,
+"fields": {
+"password": "pbkdf2_sha256$600000$azDw7eZmyHf8iO9R06rxZN$ysVmjcW3qJHIiruFBZi7vWBy1GXfDZmKFy/1tl3sJFw=",
+"last_login": null,
+"is_superuser": false,
+"username": "아인슈타인",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:26:12.784Z",
+"email": "clgusdl234@naver.com",
+"profile_picture": "profile_pictures/프로필6.jpg",
+"major": "정치학과",
+"bio": "안녕하세요.\r\n문과입니다.감사합니다.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 7,
+"fields": {
+"password": "pbkdf2_sha256$600000$5LtHflLLpxpelMSm4hKfKA$ZRvy+ZxbVuGBIXJ9aeQuQt3CmQr5vyaPlp1pAN1htAc=",
+"last_login": null,
+"is_superuser": false,
+"username": "루나",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:30:53.948Z",
+"email": "lunna@naver.com",
+"profile_picture": "profile_pictures/프로필7.jpg",
+"major": "컴퓨터공학과",
+"bio": "안녕~ 만나서 반갑다.\r\n그래그래 나다 루나.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 8,
+"fields": {
+"password": "pbkdf2_sha256$600000$xaG7ZkpxYKZwsy04hScKxd$cNdadvlA+t+A691d7q6KiBF1c2Tme8/mCXtRHjxT3kM=",
+"last_login": null,
+"is_superuser": false,
+"username": "태일",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:31:44.982Z",
+"email": "digimon@naver.com",
+"profile_picture": "profile_pictures/프로필8.jpg",
+"major": "기계학과",
+"bio": "그래 그리 쉽지는 않겠지..\r\n나를 허락해준 세상이란",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 9,
+"fields": {
+"password": "pbkdf2_sha256$600000$43ixu5hqyY1Ws1qwCkSRzr$T0wYU1ry/8NZ8tmJNW30X/so+S2tITxy/7HTBKmyKCM=",
+"last_login": null,
+"is_superuser": false,
+"username": "랄로",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:32:53.914Z",
+"email": "rallo@naver.com",
+"profile_picture": "profile_pictures/프로필9.jpg",
+"major": "전기전자학과",
+"bio": "너 재능있어.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 10,
+"fields": {
+"password": "pbkdf2_sha256$600000$kGrf3eF0hZ4qfduZ30oBlu$hbraUlm7mULBBYzskxRSXeYl69DrqaoBx7Qn5lhORrw=",
+"last_login": null,
+"is_superuser": false,
+"username": "하하",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:38:03.275Z",
+"email": "haha@naver.com",
+"profile_picture": "profile_pictures/프로필11.jpg",
+"major": "물리학과",
+"bio": "하이브리드 샘이솟아 리오레이비",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 11,
+"fields": {
+"password": "pbkdf2_sha256$600000$ZI2oKAAIWnDWvPwjhTHadk$jJB0vjzTO3NOrDR0A212vympaJnwxdXz/MI2lgAeQ+8=",
+"last_login": null,
+"is_superuser": false,
+"username": "정형돈",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:39:42.088Z",
+"email": "hyuong@naver.com",
+"profile_picture": "profile_pictures/프로필10.jpg",
+"major": "미래자동차공학과",
+"bio": "안녕하세요 반갑습니다.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 12,
+"fields": {
+"password": "pbkdf2_sha256$600000$LKtusoD93qY9ONefof2aeG$6U245+3adTuuyqBcvK2ab3O9MpGAf9fPsoYHR5vVKMo=",
+"last_login": null,
+"is_superuser": false,
+"username": "엄태란",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T13:52:42.554Z",
+"email": "Um@naver.com",
+"profile_picture": "profile_pictures/프로필12.jpg",
+"major": "AI검증학과",
+"bio": "반갑습니다.\r\n삼대 500 이하 대화금지.",
+"groups": [],
+"user_permissions": []
+}
+},
+{
+"model": "accounts.user",
+"pk": 13,
+"fields": {
+"password": "pbkdf2_sha256$600000$Br6Q6w8QIgQz7MuJNpsDji$R0Gd/MMzKlOEYtGtt7/ptmm2rPJ70nGBLSX9QeBbMKc=",
+"last_login": null,
+"is_superuser": false,
+"username": "백",
+"first_name": "",
+"last_name": "",
+"is_staff": false,
+"is_active": true,
+"date_joined": "2024-11-26T14:02:57.583Z",
+"email": "qor@naver.com",
+"profile_picture": "profile_pictures/image_1.jpg",
+"major": "기계공학과",
+"bio": "안녕",
+"groups": [],
+"user_permissions": []
+}
+}
+]
