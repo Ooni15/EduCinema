@@ -122,9 +122,42 @@
           </div>
         </div>
       </section>
+
+      <hr class="divider" />
+
+      <!-- GPT 챗봇 섹션 -->
+      <section class="gpt-chat-section">
+        <h3>GPT 정보 검색</h3>
+        <div class="chat-messages" id="chat-container">
+          <div
+            v-for="(message, index) in chatMessages"
+            :key="index"
+            class="message"
+            :class="message.role"
+          >
+            {{ message.content }}
+          </div>
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            v-model="userQuery"
+            @keyup.enter="sendGptQuery"
+            placeholder="영화나 기술에 대해 질문하세요..."
+            class="chat-input-field"
+          />
+          <button
+            @click="sendGptQuery"
+            class="chat-submit-button"
+          >
+            전송
+          </button>
+        </div>
+      </section>
     </div>
   </div>
 </template>
+
 
 <style scoped>
 /* 전체 페이지 */
@@ -399,6 +432,74 @@ p {
 
 .delete-comment-btn:hover {
   background: #aaa;
+}
+
+/* 챗봇 섹션 */
+.gpt-chat-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f1f3f5;
+  border-radius: 10px;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #333;
+  color: #fff;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: #f1f1f1;
+  color: #333;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chat-input-field {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.chat-submit-button {
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-submit-button:hover {
+  background: #666;
 }
 
 </style>
